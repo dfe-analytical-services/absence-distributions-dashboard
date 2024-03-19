@@ -220,8 +220,8 @@ server <- function(input, output, session) {
           Absence_band %in% c("pct35_OARate") ~ ">30-35%",
           Absence_band %in% c("pct40_OARate") ~ ">35-40%",
           Absence_band %in% c("pct45_OARate") ~ ">40-45%",
-          Absence_band %in% c("pct50_OARateFlag") ~ ">45-50%",
-          Absence_band %in% c("pct50plus_OARateFlag") ~ ">50%",
+          Absence_band %in% c("pct50_OARate") ~ ">45-50%",
+          Absence_band %in% c("pct50plus_OARate") ~ ">50%",
           TRUE ~ "Other" # Default case for any other values
         )
       )
@@ -251,7 +251,7 @@ server <- function(input, output, session) {
       select(Absence_band, starts_with("Year")))
 
     # Exclude specific columns
-    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2", "Year N1", "Year R")
+    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2", "Year N1","Year NA", "Year R")
     data_to_display <- data_to_display[, !names(data_to_display) %in% excluded_columns, drop = FALSE]
 
     # Order columns with mixedsort
@@ -275,7 +275,7 @@ server <- function(input, output, session) {
       select(Absence_band, starts_with("Year")))
 
     # Exclude specific columns
-    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2", "Year N1", "Year R")
+    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2","Year NA", "Year N1", "Year R")
     data_to_display <- data_to_display[, !names(data_to_display) %in% excluded_columns, drop = FALSE]
 
     # Order columns with mixedsort
