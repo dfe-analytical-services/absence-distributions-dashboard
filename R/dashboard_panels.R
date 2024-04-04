@@ -126,7 +126,7 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width = 12,
-          h1("DfE pupil absence distributions in schools in Englands")
+          h1("DfE pupil absence distributions in schools in England")
         ),
         column(
           width = 12,
@@ -159,6 +159,11 @@ dashboard_panel <- function() {
                       label = ("Select FSM status:"), multiple = TRUE,
                       choices = c("FSM Eligible" = "FSM eligible", "Not FSM Eligible" = "FSM Not eligible"),
                       selected = c("Not FSM Eligible", "FSM eligible")
+                    ),
+                    selectizeInput("selectSEN",
+                      label = ("Select SEN Status:"), multiple = TRUE,
+                      choices = c("SEN Support or EHCP" = "SEN Provision SEN Support or EHCP", "No identified SEN" = "SEN provision No identified SEN"),
+                      selected = c("SEN Provision SEN Support or EHCP", "SEN provision No identified SEN")
                     ),
                     selectizeInput("selectGender",
                       label = ("Select gender:"), multiple = TRUE,

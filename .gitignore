@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 data/absence_bands_distribution_withSEN.csv
+data/absence_bands_distribution_withSEN_new.csv
+ignore/

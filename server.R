@@ -41,9 +41,6 @@ server <- function(input, output, session) {
         session,
         paste0(
           site_title, " - "
-          # ,
-          # input$selectPhase, ", ",
-          # input$selectArea
         )
       )
     } else {
@@ -170,6 +167,7 @@ server <- function(input, output, session) {
   })
 
   selectAreaReactive <- reactive({
+    # print(input$geography_choice)
     selectArea <- switch(input$geography_choice,
       "National" = "England",
       "Regional" = {
@@ -189,20 +187,29 @@ server <- function(input, output, session) {
         }
       }
     )
+    print(selectArea)
     return(selectArea)
   })
 
 
   reactiveTable <- reactive({
     selectArea <- selectAreaReactive()
+    print(selectArea)
+    print(input$selectYear)
+    print(input$selectSchool_type)
+    print(input$selectFSM)
+    print(input$selectGender)
+    print(input$selectSEN)
 
+    req(input$selectYear, input$selectSchool_type, input$selectFSM, input$selectGender, input$selectSEN, selectArea)
+    # print(input$selectYear,input$selectSchool_type,input$selectFSM,input$selectGender, input$selectSEN, input$selectArea)
     filtered_data <- df_absence %>%
       filter(
         area_name %in% selectArea,
         time_period == input$selectYear,
         school_type %in% input$selectSchool_type,
         FSM_eligible %in% input$selectFSM,
-        # SEN_provision %in% input$selectSEN,
+        SEN %in% input$selectSEN,
         Gender %in% input$selectGender
       ) %>%
       group_by(NCyearActual, Absence_band) %>%
@@ -251,7 +258,7 @@ server <- function(input, output, session) {
       select(Absence_band, starts_with("Year")))
 
     # Exclude specific columns
-    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2", "Year N1","Year NA", "Year R")
+    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2", "Year N1", "Year NA", "Year R")
     data_to_display <- data_to_display[, !names(data_to_display) %in% excluded_columns, drop = FALSE]
 
     # Order columns with mixedsort
@@ -270,18 +277,18 @@ server <- function(input, output, session) {
 
   output$tabDataProportion <- renderDataTable({
     data_to_display <- reactiveTable()[["filtered_data_perc"]]
-    glimpse(data_to_display)
+
     datatable(data_to_display %>%
       select(Absence_band, starts_with("Year")))
 
-    # Exclude specific columns
-    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2","Year NA", "Year N1", "Year R")
+    # Do not display columns for Years not in compulsory school age
+    excluded_columns <- c("Year 12", "Year 13", "Year 14", "Year X", "Year_N", "Year N2", "Year NA", "Year N1", "Year R")
     data_to_display <- data_to_display[, !names(data_to_display) %in% excluded_columns, drop = FALSE]
 
-    # Order columns with mixedsort
+    # Order columns with in numerical order
     ordered_columns <- c("Absence_band", mixedsort(names(data_to_display)[-1]))
 
-    # Conditionally format numeric columns
+    # Conditionally format numeric columns for display
     datatable(
       data_to_display[, ordered_columns, drop = FALSE],
       options = list(
@@ -304,7 +311,7 @@ server <- function(input, output, session) {
 
   # Download the underlying data button
   output$download_data <- downloadHandler(
-    filename = "shiny_template_underlying_data.csv",
+    filename = "data/absence_bands_distributions.zip",
     content = function(file) {
       write.csv(df_absence, file)
     }
@@ -315,8 +322,8 @@ server <- function(input, output, session) {
   output$dropdown_label <- renderText({
     selectArea <- selectAreaReactive()
     paste0(
-      "Current selections: ", input$selectYear, ", ", selectArea, ", ", input$selectGender, ", ",
-      input$selectFSM, ", ", input$selectschool_type
+      "Current selections: ", input$selectYear, ", ", input$selectArea, ", ", input$selectGender, ", ",
+      input$selectSEN, ", ", input$selectFSM, ", ", input$selectschool_type
     )
   })
 

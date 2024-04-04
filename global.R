@@ -104,7 +104,7 @@ source("R/read_data.R")
 df_absence <- read_absence_data(file = "data/absence_bands_distributions.zip")
 
 
-absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name", "region_code", "region_name", "old_la_code", "la_name", "school_type", "FSM_eligible", "Gender", "NCyearActual", "Absence_band", "TotalPupils")
+absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name", "region_code", "region_name", "old_la_code", "la_name", "school_type", "FSM_eligible", "SEN", "Gender", "NCyearActual", "Absence_band", "TotalPupils", "Area_name")
 colnames(df_absence) <- absence_col_names
 
 
@@ -150,10 +150,6 @@ las <- geog_lookup %>%
 choicesYear <- sort(unique(df_absence$time_period))
 
 choicesSchool_type <- unique(df_absence$school_type)
-
-# choicesFSM <- c("FSM Eligible", "Not FSM Eligible")
-
-# choicesGender <- c("Female", "Male")
 
 expandable <- function(inputId, label, contents) {
   govDetails <- shiny::tags$details(
