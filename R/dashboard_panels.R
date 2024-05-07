@@ -130,130 +130,129 @@ dashboard_panel <- function() {
         ),
         column(
           width = 12,
-          expandable(
-            inputId = "details", label = textOutput("dropdown_label"),
-            contents =
-              div(
-                id = "div_a",
-                # class = "well",
-                # style = "min-height: 100%; height: 100%; overflow-y: visible",
-                fluidRow(
-                  column(
-                    width = 3,
-                    selectizeInput("selectYear",
-                      "Select a Year:",
-                      choices = choicesYear,
-                      selected = "2021/22"
-                    ),
-                    selectizeInput(
-                      inputId = "selectSchool_type",
-                      label = "Select School Type:",
-                      choices = choicesSchool_type,
-                      multiple = "TRUE",
-                      selected = c("Primary", "Secondary", "Special")
-                    )
-                  ),
-                  column(
-                    width = 3,
-                    selectizeInput("selectFSM",
-                      label = ("Select FSM status:"), multiple = TRUE,
-                      choices = c("FSM Eligible" = "FSM eligible", "Not FSM Eligible" = "FSM Not eligible"),
-                      selected = c("Not FSM Eligible", "FSM eligible")
-                    ),
-                    selectizeInput("selectSEN",
-                      label = ("Select SEN Status:"), multiple = TRUE,
-                      choices = c("SEN Support or EHCP" = "SEN Provision SEN Support or EHCP", "No identified SEN" = "SEN provision No identified SEN"),
-                      selected = c("SEN Provision SEN Support or EHCP", "SEN provision No identified SEN")
-                    ),
-                    selectizeInput("selectGender",
-                      label = ("Select gender:"), multiple = TRUE,
-                      choices = c("Female" = "F", "Male" = "M"),
-                      selected = c("F", "M")
-                    )
-                  ),
-                  column(
-                    width = 3,
-                    selectizeInput(
-                      inputId = "geography_choice",
-                      label = "Choose geographic level:",
-                      choices = c("National", "Regional", "Local authority"),
-                      selected = "National",
-                      width = "100%"
-                    )
-                  ),
-                  column(
-                    width = 3,
-                    conditionalPanel(
-                      condition = "input.geography_choice == 'Regional'",
-                      selectizeInput(
-                        inputId = "selectRegion",
-                        label = "Choose region:",
-                        choices = regions,
-                        selected = regions[1],
-                        width = "100%",
-                        multiple = TRUE
-                      )
-                    ),
-                    conditionalPanel(
-                      condition = "input.geography_choice == 'Local authority'",
-                      selectizeInput(
-                        inputId = "selectLA",
-                        label = "Choose local authority:",
-                        choices = las,
-                        selected = las[1],
-                        width = "100%",
-                        multiple = TRUE
-                      )
-                    )
-                  )
-                ),
-                fluidRow(
-                  column(
-                    width = 12,
-                    paste("Download the underlying data for this dashboard:"),
-                    br(),
-                    downloadButton(
-                      outputId = "download_data",
-                      label = "Download data",
-                      icon = shiny::icon("download"),
-                      class = "downloadButton"
-                    )
-                  )
-                )
+          # expandable(
+          # inputId = "details", label = textOutput("dropdown_label"),
+          # contents =
+          # div(
+          #  id = "div_a",
+          # class = "well",
+          # style = "min-height: 100%; height: 100%; overflow-y: visible",
+          fluidRow(
+            column(
+              width = 3,
+              selectizeInput("selectYear",
+                "Select a Year:",
+                choices = choicesYear,
+                selected = "2021/22"
+              ),
+              selectizeInput(
+                inputId = "selectSchool_type",
+                label = "Select School Type:",
+                choices = choicesSchool_type,
+                multiple = "TRUE",
+                selected = c("Primary", "Secondary", "Special")
               )
-          )
-        ),
-      ),
-      column(
-        width = 12,
-        tabsetPanel(
-          id = "tabsetpanels",
-          tabPanel(
-            "Pupil Numbers",
-            fluidRow(
-              column(
-                width = 12,
-                h2("Absence distributions by year group: Pupil Numbers"),
-                fluidRow(
-                  column(
-                    width = 12,
-                    dataTableOutput("tabDataNumber")
-                  )
+            ),
+            column(
+              width = 3,
+              selectizeInput("selectFSM",
+                label = ("Select FSM status:"), multiple = TRUE,
+                choices = c("FSM Eligible" = "FSM eligible", "Not FSM Eligible" = "FSM Not eligible"),
+                selected = c("Not FSM Eligible", "FSM eligible")
+              ),
+              selectizeInput("selectSEN",
+                label = ("Select SEN Status:"), multiple = TRUE,
+                choices = c("SEN Support or EHCP" = "SEN Provision SEN Support or EHCP", "No identified SEN" = "SEN provision No identified SEN"),
+                selected = c("SEN Provision SEN Support or EHCP", "SEN provision No identified SEN")
+              ),
+              selectizeInput("selectGender",
+                label = ("Select gender:"), multiple = TRUE,
+                choices = c("Female" = "F", "Male" = "M"),
+                selected = c("F", "M")
+              )
+            ),
+            column(
+              width = 3,
+              selectizeInput(
+                inputId = "geography_choice",
+                label = "Choose geographic level:",
+                choices = c("National", "Regional", "Local authority"),
+                selected = "National",
+                width = "100%"
+              )
+            ),
+            column(
+              width = 3,
+              conditionalPanel(
+                condition = "input.geography_choice == 'Regional'",
+                selectizeInput(
+                  inputId = "selectRegion",
+                  label = "Choose region:",
+                  choices = regions,
+                  selected = regions[1],
+                  width = "100%",
+                  multiple = TRUE
+                )
+              ),
+              conditionalPanel(
+                condition = "input.geography_choice == 'Local authority'",
+                selectizeInput(
+                  inputId = "selectLA",
+                  label = "Choose local authority:",
+                  choices = las,
+                  selected = las[1],
+                  width = "100%",
+                  multiple = TRUE
                 )
               )
             )
           ),
-          tabPanel(
-            "Proportions",
-            fluidRow(
-              column(
-                width = 12,
-                h2("Absence distributions by year group: Proportions"),
-                fluidRow(
-                  column(
-                    width = 12,
-                    dataTableOutput("tabDataProportion")
-                  )
+          fluidRow(
+            column(
+              width = 12,
+              paste("Download the underlying data for this dashboard:"),
+              br(),
+              downloadButton(
+                outputId = "download_data",
+                label = "Download data",
+                icon = shiny::icon("download"),
+                class = "downloadButton"
+              )
+            )
+          )
+        )
+        # )
+      ),
+    ),
+    column(
+      width = 12,
+      tabsetPanel(
+        id = "tabsetpanels",
+        tabPanel(
+          "Pupil Numbers",
+          fluidRow(
+            column(
+              width = 12,
+              h2("Absence distributions by year group: Pupil Numbers"),
+              fluidRow(
+                column(
+                  width = 12,
+                  dataTableOutput("tabDataNumber")
+                )
+              )
+            )
+          )
+        ),
+        tabPanel(
+          "Proportions",
+          fluidRow(
+            column(
+              width = 12,
+              h2("Absence distributions by year group: Proportions"),
+              fluidRow(
+                column(
+                  width = 12,
+                  dataTableOutput("tabDataProportion")
                 )
               )
             )
