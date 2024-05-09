@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 data/absence_bands_distributions_real.csv
+R/random_data_generator.R

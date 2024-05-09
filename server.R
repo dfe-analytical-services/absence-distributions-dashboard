@@ -4,10 +4,10 @@
 server <- function(input, output, session) {
   # Loading screen -------------------------------------------------------------
   # Call initial loading screen
-  
+
   hide(id = "loading-content", anim = TRUE, animType = "fade")
   show("app-content")
-  
+
   # The template uses bookmarking to store input choices in the url. You can
   # exclude specific inputs (for example extra info created for a datatable
   # or plotly chart) using the list below, but it will need updating to match
@@ -24,17 +24,17 @@ server <- function(input, output, session) {
     "plotly_click-A", "plotly_hover-A", "plotly_afterplot-A",
     ".clientValue-default-plotlyCrosstalkOpts"
   ))
-  
+
   observe({
     # Trigger this observer every time an input changes
     reactiveValuesToList(input)
     session$doBookmark()
   })
-  
+
   onBookmarked(function(url) {
     updateQueryString(url)
   })
-  
+
   observe({
     if (input$navlistPanel == "dashboard") {
       change_window_title(
@@ -53,7 +53,7 @@ server <- function(input, output, session) {
       )
     }
   })
-  
+
   observeEvent(input$cookies, {
     if (!is.null(input$cookies)) {
       if (!("dfe_analytics" %in% names(input$cookies))) {
@@ -78,7 +78,7 @@ server <- function(input, output, session) {
       shinyjs::hide(id = "cookieMain")
     }
   })
-  
+
   # Need these set of observeEvent to create a path through the cookie banner
   observeEvent(input$cookieAccept, {
     msg <- list(
@@ -90,7 +90,7 @@ server <- function(input, output, session) {
     shinyjs::show(id = "cookieAcceptDiv")
     shinyjs::hide(id = "cookieMain")
   })
-  
+
   observeEvent(input$cookieReject, {
     msg <- list(
       name = "dfe_analytics",
@@ -101,15 +101,15 @@ server <- function(input, output, session) {
     shinyjs::show(id = "cookieRejectDiv")
     shinyjs::hide(id = "cookieMain")
   })
-  
+
   observeEvent(input$hideAccept, {
     shinyjs::toggle(id = "cookieDiv")
   })
-  
+
   observeEvent(input$hideReject, {
     shinyjs::toggle(id = "cookieDiv")
   })
-  
+
   observeEvent(input$remove, {
     shinyjs::toggle(id = "cookieMain")
     msg <- list(name = "dfe_analytics", value = "denied")
@@ -117,11 +117,11 @@ server <- function(input, output, session) {
     session$sendCustomMessage("analytics-consent", msg)
     print(input$cookies)
   })
-  
+
   cookies_data <- reactive({
     input$cookies
   })
-  
+
   output$cookie_status <- renderText({
     cookie_text_stem <- "To better understand the reach of our dashboard tools,
     this site uses cookies to identify numbers of unique users as part of Google
@@ -139,73 +139,84 @@ server <- function(input, output, session) {
       "Cookies consent has not been confirmed."
     }
   })
-  
+
   observeEvent(input$cookieLink, {
     # Need to link here to where further info is located.  You can
     # updateTabsetPanel to have a cookie page for instance
     updateTabsetPanel(session, "navlistPanel",
-                      selected = "Support and feedback"
+      selected = "Support and feedback"
     )
   })
-  
+
   t <- list(
     family = "arial",
     size = 10,
     color = "grey"
   )
   #  output$cookie_status <- renderText(as.character(input$cookies))
-  
+
   # Simple server stuff goes here ----------------------------------------------
-  
-  
+
+
   regionReactive <- reactive({
     list(input$geography_choice, input$selectArea)
   })
-  
+
   laReactive <- reactive({
     list(input$geography_choice, input$selectArea)
   })
-  
+
   selectAreaReactive <- reactive({
     selectArea <- switch(input$geography_choice,
-                         "National" = "England",
-                         "Regional" = {
-                           if (length(input$selectRegion) == 0) {
-                             # Handle the case when no Local Authorities are selected
-                             "England"
-                           } else {
-                             input$selectRegion
-                           }
-                         },
-                         "Local authority" = {
-                           if (length(input$selectLA) == 0) {
-                             # Handle the case when no Local Authorities are selected
-                             "England"
-                           } else {
-                             input$selectLA
-                           }
-                         }
+      "National" = "England",
+      "Regional" = {
+        if (length(input$selectRegion) == 0) {
+          # Handle the case when no Local Authorities are selected
+          "England"
+        } else {
+          input$selectRegion
+        }
+      },
+      "Local authority" = {
+        if (length(input$selectLA) == 0) {
+          # Handle the case when no Local Authorities are selected
+          "England"
+        } else {
+          input$selectLA
+        }
+      }
     )
     return(selectArea)
   })
-  
-  
+
+
   reactiveTable <- reactive({
+    df_absence <- df_absence %>%
+      mutate(
+        time_period = paste0(substr(time_period, 1, 4), "/", substr(time_period, 5, 6)),
+        area_name = case_when(
+          geographic_level == "National" ~ country_name,
+          geographic_level == "Local authority" ~ la_name,
+          TRUE ~ region_name # Default case if none of the above conditions are met
+        )
+      )
     selectArea <- selectAreaReactive()
-    
+
+
     req(input$selectYear, input$selectSchool_type, input$selectFSM, input$selectGender, input$selectSEN, selectArea)
+
     filtered_data <- df_absence %>%
       filter(
-        area_name %in% selectArea,
         time_period == input$selectYear,
+        area_name %in% selectArea,
         school_type %in% input$selectSchool_type,
         fsm_eligible %in% input$selectFSM,
         sen_status %in% input$selectSEN,
         gender %in% input$selectGender
-      )  %>%
+      ) %>%
       group_by(NCyearActual) %>%
-      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>% #add the numbers for all the filters together
-      pivot_longer(cols = starts_with("pct"), names_to = 'percent_band') %>%
+      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>% # add the numbers for all the filters together
+      pivot_longer(cols = starts_with("pct"), names_to = "percent_band") %>%
       pivot_wider(names_from = NCyearActual, values_from = value) %>%
       rename_with(~ paste0("Year ", .), where(is.numeric)) %>%
       mutate(
@@ -224,7 +235,7 @@ server <- function(input, output, session) {
           TRUE ~ "Other" # Default case for any other values
         )
       )
-    
+
     # turn into percentages
     filtered_data_perc <- df_absence %>%
       filter(
@@ -236,13 +247,13 @@ server <- function(input, output, session) {
         gender %in% input$selectGender
       ) %>%
       group_by(NCyearActual) %>%
-      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>% #add the numbers for all the filters together
+      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>% # add the numbers for all the filters together
       mutate(total = rowSums(across(starts_with("pct")))) %>%
       mutate(across(starts_with("pct"), ~ . / total, .names = "percent_{.col}")) %>%
       select(-total) %>%
       select(-starts_with("pct")) %>%
       rename_with(~ gsub("^percent_", "", .), starts_with("percent_")) %>%
-      pivot_longer(cols = starts_with("pct"), names_to = 'percent_band') %>%
+      pivot_longer(cols = starts_with("pct"), names_to = "percent_band") %>%
       pivot_wider(names_from = NCyearActual, values_from = value) %>%
       rename_with(~ paste0("Year ", .), where(is.numeric)) %>%
       mutate(
@@ -262,22 +273,19 @@ server <- function(input, output, session) {
         )
       )
     list(filtered_data = filtered_data, filtered_data_perc = filtered_data_perc)
-    
   })
-  
+
   observe({
-    
     reactiveTable()
-    
   })
-  
+
   output$tabDataNumber <- renderDataTable({
-    data_to_display<-(reactiveTable()$filtered_data)
+    data_to_display <- (reactiveTable()$filtered_data)
     datatable(data_to_display)
-    
+
     col_names <- names(data_to_display)
     col_names[col_names == "percent_band"] <- "Overall Absence Band"
-    
+
     # Conditionally format numeric columns
     datatable(
       # data_to_display[, ordered_columns, drop = FALSE],
@@ -290,14 +298,14 @@ server <- function(input, output, session) {
       colnames = col_names
     )
   })
-  
+
   output$tabDataProportion <- renderDataTable({
-    data_to_display<-(reactiveTable()$filtered_data_perc)
+    data_to_display <- (reactiveTable()$filtered_data_perc)
     datatable(data_to_display)
-    
+
     col_names <- names(data_to_display)
     col_names[col_names == "percent_band"] <- "Overall Absence Band"
-    
+
     # Conditionally format numeric columns for display
     datatable(
       data_to_display,
@@ -306,20 +314,20 @@ server <- function(input, output, session) {
         paging = FALSE
       ),
       rownames = FALSE,
-      colnames=col_names
+      colnames = col_names
     ) %>% formatPercentage(columns = 2:ncol(data_to_display), digits = 2)
   })
-  
-  
+
+
   observeEvent(input$go, {
     toggle(id = "div_a", anim = T)
   })
-  
-  
+
+
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
   })
-  
+
   # Download the underlying data button
   output$download_data <- downloadHandler(
     filename = "data/absence_bands_distributions.zip",
@@ -327,7 +335,7 @@ server <- function(input, output, session) {
       write.csv(df_absence, file)
     }
   )
-  
+
   # Add input IDs here that are within the relevant drop down boxes to create
   # dynamic text
   output$dropdown_label <- renderText({
@@ -337,16 +345,16 @@ server <- function(input, output, session) {
       input$selectSEN, ", ", input$selectFSM, ", ", input$selectschool_type
     )
   })
-  
+
   # Dropdown expandable label ------------------------------------------------------------
   observeEvent(input$go, {
     toggle(id = "div_a", anim = T)
   })
-  
-  
-  
+
+
+
   # Stop app -------------------------------------------------------------------
-  
+
   session$onSessionEnded(function() {
     stopApp()
   })

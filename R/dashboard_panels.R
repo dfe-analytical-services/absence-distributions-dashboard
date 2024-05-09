@@ -239,7 +239,7 @@ dashboard_panel <- function() {
               fluidRow(
                 column(
                   width = 12,
-                  h2("Absence distributions by year group: Pupil Enrolments"),
+                  # h2("Absence distributions by year group: Pupil Enrolments"),
                   fluidRow(
                     column(
                       width = 12,
@@ -254,7 +254,7 @@ dashboard_panel <- function() {
               fluidRow(
                 column(
                   width = 12,
-                  h2("Absence distributions by year group: Proportions"),
+                  # h2("Absence distributions by year group: Proportions"),
                   fluidRow(
                     column(
                       width = 12,

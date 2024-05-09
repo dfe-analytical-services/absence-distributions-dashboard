@@ -133,11 +133,11 @@ ui <- function(input, output, session) {
       homepage_panel(),
       dashboard_panel(),
       technical_panel(),
-     # support_panel(
-     #   team_email = " schools.statistics@education.gov.uk",
-     #   repo_name = "https://github.com/dfe-analytical-services/shiny-template",
-     #   form_url = "https://forms.office.com"
-     # ),
+      # support_panel(
+      #   team_email = " schools.statistics@education.gov.uk",
+      #   repo_name = "https://github.com/dfe-analytical-services/shiny-template",
+      #   form_url = "https://forms.office.com"
+      # ),
       a11y_panel(),
     ),
     gov_layout(

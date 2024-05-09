@@ -33,7 +33,7 @@ shhh(library(shinytest2))
 shhh(library(readr))
 shhh(library(rstudioapi))
 shhh(library(bslib))
-#shhh(library(dfeshiny))
+# shhh(library(dfeshiny))
 shhh(library(ggiraph))
 
 shhh(library(data.table))
@@ -104,7 +104,7 @@ source("R/read_data.R")
 df_absence <- read_absence_data(file = "data/absence_bands_distributions.csv")
 
 
-absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name",  "region_name", "region_code","old_la_code", "new_la_code","la_name", "school_type", "fsm_eligible", "sen_status", "gender", "NCyearActual", "pct5_OARate", "pct10_OARate","pct15_OARate","pct20_OARate","pct25_OARate","pct30_OARate","pct35_OARate","pct40_OARate","pct45_OARate","pct50_OARate","pct50plus_OARate")
+absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name", "region_name", "region_code", "old_la_code", "new_la_code", "la_name", "school_type", "fsm_eligible", "sen_status", "gender", "NCyearActual", "pct5_OARate", "pct10_OARate", "pct15_OARate", "pct20_OARate", "pct25_OARate", "pct30_OARate", "pct35_OARate", "pct40_OARate", "pct45_OARate", "pct50_OARate", "pct50plus_OARate")
 colnames(df_absence) <- absence_col_names
 
 df_absence <- df_absence %>%
@@ -116,6 +116,7 @@ df_absence <- df_absence %>%
       TRUE ~ region_name # Default case if none of the above conditions are met
     )
   )
+
 # Get geographical levels from data
 # Add geog lookup
 geog_lookup <- df_absence %>%
@@ -168,7 +169,7 @@ roundFiveUp <- function(value, dp) {
   if (!is.numeric(value) && !is.numeric(dp)) stop("both inputs must be numeric")
   if (!is.numeric(value)) stop("the value to be rounded must be numeric")
   if (!is.numeric(dp)) stop("the decimal places value must be numeric")
-  
+
   z <- abs(value) * 10^dp
   z <- z + 0.5 + sqrt(.Machine$double.eps)
   z <- trunc(z)
