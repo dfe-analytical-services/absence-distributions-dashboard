@@ -2,6 +2,4 @@
 .Rhistory
 .RData
 .Ruserdata
-data/absence_bands_distribution_withSEN.csv
-data/absence_bands_distribution_withSEN_new.csv
-ignore/
+data/absence_bands_distributions_real.csv

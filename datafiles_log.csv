@@ -1,4 +1,3 @@
 filename,status
-ignore/LA_Distribution_table_2223.csv,unpublished
-data/absence_bands_distributions.csv,unpublished
-data/absence_bands_distributions.zip,published
+data/absence_bands_distributions_real.csv,unpublished
+data/absence_bands_distributions.csv,published

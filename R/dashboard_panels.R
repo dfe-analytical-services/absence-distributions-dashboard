@@ -14,10 +14,26 @@ technical_panel <- function() {
                     breakdowns. "),
           br(),
           h3("Absence rates"),
-          p("Absence rates are calculated by dividing the number of sessions coded as an absence by the total number of possible sessions, where possible sessions include on-site attendance, approved off-site educational activity (for example, work experience) and absence."),
+          p("Absence rates are calculated by dividing the number of sessions coded as an absence by the total number of possible sessions, where possible sessions include on-site attendance, approved off-site educational activity (for example, work experience) and absence. The banding rates are as follows:"),
+           p(" 0-5% = Pupils whose overall absence was in the range 0.00-4.99%,"),
+           p(" 5-10% = Pupils whose overall absence was in the range 5.00-9.99%,"),
+          p(" 10-15% = Pupils whose overall absence was in the range 10.00-14.99%,"),
+          p(" 15-20% = Pupils whose overall absence was in the range 15.00-19.99%,"),
+          p(" 20-25% = Pupils whose overall absence was in the range 20.00-24.99%,"),
+          p(" 25-30% = Pupils whose overall absence was in the range 25.00-29.99%,"),
+          p(" 30-25% = Pupils whose overall absence was in the range 30.00-34.99%,"),
+          p(" 35-40% = Pupils whose overall absence was in the range 35.00-39.99%,"),
+          p(" 40-45% = Pupils whose overall absence was in the range 40.00-44.99%,"),
+          p(" 45-50% = Pupils whose overall absence was in the range 45.00-49.99%,"),
+          p(" 50%+ = Pupils whose overall absence was in the range 50.00-100%,"),
+          br(),
+          h3("Special Educational Needs"),
+          p("A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
+          p("A pupil has an EHC plan when a formal assessment has been made. A document is in place that sets out the child’s need and the extra help they should receive. EHC plans were introduced in September 2014 replacing Statements of SEN, with these being phased out by April 2018. This category therefore includes Statements of SEN for the years up to 2018."),
+          p("From 2015, the School Action and School Action Plus categories were combined to form one category of SEN support. Extra or different help is given from that provided as part of the school’s usual curriculum. The class teacher and special educational needs co-ordinator (SENCO) may receive advice or support from outside specialists. The criteria required for SEN Support varies in Local Authorities."),
           br(),
           h3("Suppression"),
-          p("Data has been suppressed in the dashboard and underlying data where data for a single school is presented in a breakdown, for example, a single primary school in a specific local authority. Suppressed values have been replaced with a ‘c’.")
+          p("This data has not been supressed")
         )
       )
     )
@@ -59,12 +75,12 @@ homepage_panel <- function() {
                     breakdowns. "),
                   br(),
                   p("Users can select a geographic level prior to selecting further options at
-                  Region or Local Authority level."),
+                  Regional or Local Authority level."),
                   br(),
-                  p("The Number and Percentage tabs shows information on the number and proportion of pupils in each Year
-                    Group who fall into 5% bands for overall absence from 2017/18 to 2022/23."),
+                  p("The Number and Percentage tabs shows information on the number and proportion of pupil enrolments in each Year
+                    Group who fall into 5% bands for overall absence from 2016/17 to 2022/23."),
                   br(),
-                  p("The distributions may be broken down to show numbers and proportions for pupils grouped by their Free School Meal status and by gender."),
+                  p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status and by gender."),
                   br(),
                   p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
                     matching the selection."),
@@ -130,6 +146,120 @@ dashboard_panel <- function() {
         ),
         column(
           width = 12,
+
+          expandable(
+            inputId = "details", label = textOutput("dropdown_label"),
+            contents =
+              div(
+                id = "div_a",
+                # class = "well",
+                # style = "min-height: 100%; height: 100%; overflow-y: visible",
+                fluidRow(
+                  column(
+                    width = 3,
+                    selectizeInput("selectYear",
+                      "Select a Year:",
+                      choices = choicesYear,
+                      selected = "2022/23"
+                    ),
+                    selectizeInput(
+                      inputId = "selectSchool_type",
+                      label = "Select School Type:",
+                      choices = choicesSchool_type,
+                      multiple = "TRUE",
+                      selected = c("State-funded primary", "State-funded secondary", "Special")
+                    )
+                  ),
+                  column(
+                    width = 3,
+                    selectizeInput("selectFSM",
+                      label = ("Select FSM status:"), multiple = TRUE,
+                      choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible"),
+                      selected = c("Not Eligible", "Eligible")
+                    ),
+                    selectizeInput("selectSEN",
+                      label = ("Select SEN Status:"), multiple = TRUE,
+                      choices = c("Any special educational need", "No identified special educational need"),
+                      selected = c("Any special educational need", "No identified special educational need")
+                    ),
+                    selectizeInput("selectGender",
+                      label = ("Select gender:"), multiple = TRUE,
+                      choices = c("Female", "Male"),
+                      selected = c("Female", "Male")
+                    )
+                  ),
+                  column(
+                    width = 3,
+                    selectizeInput(
+                      inputId = "geography_choice",
+                      label = "Choose geographic level:",
+                      choices = c("National", "Regional", "Local authority"),
+                      selected = "National",
+                      width = "100%"
+                    )
+                  ),
+                  column(
+                    width = 3,
+                    conditionalPanel(
+                      condition = "input.geography_choice == 'Regional'",
+                      selectizeInput(
+                        inputId = "selectRegion",
+                        label = "Choose region:",
+                        choices = regions,
+                        selected = regions[1],
+                        width = "100%",
+                        multiple = TRUE
+                      )
+                    ),
+                    conditionalPanel(
+                      condition = "input.geography_choice == 'Local authority'",
+                      selectizeInput(
+                        inputId = "selectLA",
+                        label = "Choose local authority:",
+                        choices = las,
+                        selected = las[1],
+                        width = "100%",
+                        multiple = TRUE
+                      )
+                    )
+                  )
+                ),
+                fluidRow(
+                  column(
+                    width = 12,
+                    paste("Download the underlying data for this dashboard:"),
+                    br(),
+                    downloadButton(
+                      outputId = "download_data",
+                      label = "Download data",
+                      icon = shiny::icon("download"),
+                      class = "downloadButton"
+                    )
+                  )
+                )
+              )
+          )
+        ),
+      ),
+      column(
+        width = 12,
+        tabsetPanel(
+          id = "tabsetpanels",
+          tabPanel(
+            "Pupil Enrolments",
+            fluidRow(
+              column(
+                width = 12,
+                h2("Absence distributions by year group: Pupil Enrolments"),
+                fluidRow(
+                  column(
+                    width = 12,
+                    dataTableOutput("tabDataNumber")
+                  )
+                  )
+                )
+              ), #i added these to try and fix it
+
           # expandable(
           # inputId = "details", label = textOutput("dropdown_label"),
           # contents =
@@ -203,10 +333,24 @@ dashboard_panel <- function() {
                   selected = las[1],
                   width = "100%",
                   multiple = TRUE
+
                 )
               )
             )
           ),
+
+          tabPanel(
+            "Proportions",
+            fluidRow(
+              column(
+                width = 12,
+                h2("Absence distributions by year group: Proportions of Year Group"),
+                fluidRow(
+                  column(
+                    width = 12,
+                    dataTableOutput("tabDataProportion")
+                  )))),
+
           fluidRow(
             column(
               width = 12,
@@ -253,6 +397,7 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   dataTableOutput("tabDataProportion")
+
                 )
               )
             )
