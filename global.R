@@ -93,7 +93,7 @@ sites_list <- c(site_primary, site_overflow)
 ees_pub_name <- "Statistical publication"
 # Update with parent publication link
 ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/"
-google_analytics_key <- "Z967JJVQQX"
+google_analytics_key <- "9E4GQN2T4H"
 
 
 source("R/read_data.R")
