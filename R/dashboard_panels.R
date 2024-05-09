@@ -15,8 +15,8 @@ technical_panel <- function() {
           br(),
           h3("Absence rates"),
           p("Absence rates are calculated by dividing the number of sessions coded as an absence by the total number of possible sessions, where possible sessions include on-site attendance, approved off-site educational activity (for example, work experience) and absence. The banding rates are as follows:"),
-           p(" 0-5% = Pupils whose overall absence was in the range 0.00-4.99%,"),
-           p(" 5-10% = Pupils whose overall absence was in the range 5.00-9.99%,"),
+          p(" 0-5% = Pupils whose overall absence was in the range 0.00-4.99%,"),
+          p(" 5-10% = Pupils whose overall absence was in the range 5.00-9.99%,"),
           p(" 10-15% = Pupils whose overall absence was in the range 10.00-14.99%,"),
           p(" 15-20% = Pupils whose overall absence was in the range 15.00-19.99%,"),
           p(" 20-25% = Pupils whose overall absence was in the range 20.00-24.99%,"),
@@ -49,7 +49,7 @@ homepage_panel <- function() {
           12,
           h1("DfE pupil absence distributions in schools in England"),
           br(),
-          p("Data was last updated on 2024-03-21."),
+          p("Data was last updated on 2024-05-10."),
           br()
         ),
 
@@ -77,15 +77,15 @@ homepage_panel <- function() {
                   p("Users can select a geographic level prior to selecting further options at
                   Regional or Local Authority level."),
                   br(),
-                  p("The Number and Percentage tabs shows information on the number and proportion of pupil enrolments in each Year
+                  p("The Enrolments and Proportion tabs shows information on the number and proportion of pupil enrolments in each Year
                     Group who fall into 5% bands for overall absence from 2016/17 to 2022/23."),
                   br(),
-                  p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status and by gender."),
+                  p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Education Need and by sex."),
                   br(),
                   p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
                     matching the selection."),
                   br(),
-                  p("During the 2020/21 and 2021/22 academic years, schools were advised to record where a pupil not attending in circumstances relating to coronavirus  as Code X. Where a pupil was not attending in these circumstances,
+                  p("During the 2020/21 and 2021/22 academic years, schools were advised to record where a pupil not attending in circumstances relating to COVID-19  as Code X. Where a pupil was not attending in these circumstances,
                     schools were expected to provide immediate access to remote education and they are not included in the absence rates reported
                     here. Throughout the pandemic, schools were advised to record pupils with a confirmed case of COVID-19 as absent due to
                     illness (Code I) which are included in the overall absence rates reported here."),
@@ -113,7 +113,7 @@ homepage_panel <- function() {
               div(
                 class = "panel-body",
                 p("These figures are derived from census data submitted to the Department for Education (DfE)."),
-                p("This dashboard has been developed as an accompaniment to DFE's termly National statistics on pupil absence. You can access these publications through the links below:"),
+                p("This dashboard has been developed as an accompaniment to DfE's termly National statistics on pupil absence. You can access these publications through the links below:"),
                 br(),
                 p(tags$a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england/2021-22", "Pupil absence in schools in England")),
                 br(),
@@ -146,161 +146,40 @@ dashboard_panel <- function() {
         ),
         column(
           width = 12,
-
-          expandable(
-            inputId = "details", label = textOutput("dropdown_label"),
-            contents =
-              div(
-                id = "div_a",
-                # class = "well",
-                # style = "min-height: 100%; height: 100%; overflow-y: visible",
-                fluidRow(
-                  column(
-                    width = 3,
-                    selectizeInput("selectYear",
-                      "Select a Year:",
-                      choices = choicesYear,
-                      selected = "2022/23"
-                    ),
-                    selectizeInput(
-                      inputId = "selectSchool_type",
-                      label = "Select School Type:",
-                      choices = choicesSchool_type,
-                      multiple = "TRUE",
-                      selected = c("State-funded primary", "State-funded secondary", "Special")
-                    )
-                  ),
-                  column(
-                    width = 3,
-                    selectizeInput("selectFSM",
-                      label = ("Select FSM status:"), multiple = TRUE,
-                      choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible"),
-                      selected = c("Not Eligible", "Eligible")
-                    ),
-                    selectizeInput("selectSEN",
-                      label = ("Select SEN Status:"), multiple = TRUE,
-                      choices = c("Any special educational need", "No identified special educational need"),
-                      selected = c("Any special educational need", "No identified special educational need")
-                    ),
-                    selectizeInput("selectGender",
-                      label = ("Select gender:"), multiple = TRUE,
-                      choices = c("Female", "Male"),
-                      selected = c("Female", "Male")
-                    )
-                  ),
-                  column(
-                    width = 3,
-                    selectizeInput(
-                      inputId = "geography_choice",
-                      label = "Choose geographic level:",
-                      choices = c("National", "Regional", "Local authority"),
-                      selected = "National",
-                      width = "100%"
-                    )
-                  ),
-                  column(
-                    width = 3,
-                    conditionalPanel(
-                      condition = "input.geography_choice == 'Regional'",
-                      selectizeInput(
-                        inputId = "selectRegion",
-                        label = "Choose region:",
-                        choices = regions,
-                        selected = regions[1],
-                        width = "100%",
-                        multiple = TRUE
-                      )
-                    ),
-                    conditionalPanel(
-                      condition = "input.geography_choice == 'Local authority'",
-                      selectizeInput(
-                        inputId = "selectLA",
-                        label = "Choose local authority:",
-                        choices = las,
-                        selected = las[1],
-                        width = "100%",
-                        multiple = TRUE
-                      )
-                    )
-                  )
-                ),
-                fluidRow(
-                  column(
-                    width = 12,
-                    paste("Download the underlying data for this dashboard:"),
-                    br(),
-                    downloadButton(
-                      outputId = "download_data",
-                      label = "Download data",
-                      icon = shiny::icon("download"),
-                      class = "downloadButton"
-                    )
-                  )
-                )
-              )
-          )
-        ),
-      ),
-      column(
-        width = 12,
-        tabsetPanel(
-          id = "tabsetpanels",
-          tabPanel(
-            "Pupil Enrolments",
-            fluidRow(
-              column(
-                width = 12,
-                h2("Absence distributions by year group: Pupil Enrolments"),
-                fluidRow(
-                  column(
-                    width = 12,
-                    dataTableOutput("tabDataNumber")
-                  )
-                  )
-                )
-              ), #i added these to try and fix it
-
-          # expandable(
-          # inputId = "details", label = textOutput("dropdown_label"),
-          # contents =
-          # div(
-          #  id = "div_a",
-          # class = "well",
-          # style = "min-height: 100%; height: 100%; overflow-y: visible",
           fluidRow(
             column(
               width = 3,
               selectizeInput("selectYear",
                 "Select a Year:",
                 choices = choicesYear,
-                selected = "2021/22"
+                selected = "2022/23"
               ),
               selectizeInput(
                 inputId = "selectSchool_type",
                 label = "Select School Type:",
                 choices = choicesSchool_type,
                 multiple = "TRUE",
-                selected = c("Primary", "Secondary", "Special")
+                selected = c("State-funded primary", "State-funded secondary", "Special")
               )
-            ),
+            ), # end of col
             column(
               width = 3,
               selectizeInput("selectFSM",
                 label = ("Select FSM status:"), multiple = TRUE,
-                choices = c("FSM Eligible" = "FSM eligible", "Not FSM Eligible" = "FSM Not eligible"),
-                selected = c("Not FSM Eligible", "FSM eligible")
+                choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible"),
+                selected = c("Not Eligible", "Eligible")
               ),
               selectizeInput("selectSEN",
-                label = ("Select SEN Status:"), multiple = TRUE,
-                choices = c("SEN Support or EHCP" = "SEN Provision SEN Support or EHCP", "No identified SEN" = "SEN provision No identified SEN"),
-                selected = c("SEN Provision SEN Support or EHCP", "SEN provision No identified SEN")
+                label = ("Select SEN status:"), multiple = TRUE,
+                choices = c("Any special educational need", "No identified special educational need"),
+                selected = c("Any special educational need", "No identified special educational need")
               ),
               selectizeInput("selectGender",
-                label = ("Select gender:"), multiple = TRUE,
-                choices = c("Female" = "F", "Male" = "M"),
-                selected = c("F", "M")
+                label = ("Select sex:"), multiple = TRUE,
+                choices = c("Female", "Male"),
+                selected = c("Female", "Male")
               )
-            ),
+            ), # end of col
             column(
               width = 3,
               selectizeInput(
@@ -310,7 +189,7 @@ dashboard_panel <- function() {
                 selected = "National",
                 width = "100%"
               )
-            ),
+            ), # end of col
             column(
               width = 3,
               conditionalPanel(
@@ -333,24 +212,10 @@ dashboard_panel <- function() {
                   selected = las[1],
                   width = "100%",
                   multiple = TRUE
-
                 )
               )
-            )
-          ),
-
-          tabPanel(
-            "Proportions",
-            fluidRow(
-              column(
-                width = 12,
-                h2("Absence distributions by year group: Proportions of Year Group"),
-                fluidRow(
-                  column(
-                    width = 12,
-                    dataTableOutput("tabDataProportion")
-                  )))),
-
+            ) # end of col
+          ), # end of row with all the selections in
           fluidRow(
             column(
               width = 12,
@@ -362,48 +227,46 @@ dashboard_panel <- function() {
                 icon = shiny::icon("download"),
                 class = "downloadButton"
               )
-            )
-          )
-        )
-        # )
-      ),
-    ),
-    column(
-      width = 12,
-      tabsetPanel(
-        id = "tabsetpanels",
-        tabPanel(
-          "Pupil Numbers",
-          fluidRow(
-            column(
-              width = 12,
-              h2("Absence distributions by year group: Pupil Numbers"),
+            ) # end of col
+          ) # end of row with download in
+        ), # end of col with selectors in
+        column(
+          width = 12,
+          tabsetPanel(
+            id = "tabsetpanels",
+            tabPanel(
+              "Pupil Enrolments",
               fluidRow(
                 column(
                   width = 12,
-                  dataTableOutput("tabDataNumber")
+                  h2("Absence distributions by year group: Pupil Enrolments"),
+                  fluidRow(
+                    column(
+                      width = 12,
+                      dataTableOutput("tabDataNumber")
+                    )
+                  )
                 )
               )
-            )
-          )
-        ),
-        tabPanel(
-          "Proportions",
-          fluidRow(
-            column(
-              width = 12,
-              h2("Absence distributions by year group: Proportions"),
+            ),
+            tabPanel(
+              "Proportions",
               fluidRow(
                 column(
                   width = 12,
-                  dataTableOutput("tabDataProportion")
-
-                )
+                  h2("Absence distributions by year group: Proportions"),
+                  fluidRow(
+                    column(
+                      width = 12,
+                      dataTableOutput("tabDataProportion")
+                    )
+                  ) # end of row
+                ) # end of col
               )
-            )
-          )
-        )
-      )
-    )
-  )
+            ) # end of tabpanel
+          ) # end of tabset
+        ) # end of col with panel in
+      ) # end of gov
+    ) # end of gov layout
+  ) # tabpanel dashboard
 }
