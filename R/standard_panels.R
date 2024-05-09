@@ -18,16 +18,7 @@ a11y_panel <- function() {
               "WCAG 2.1 requirements. ",
               onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"
             ),
-            "This application has been checked using the ",
-            a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "),
-            ", which did not detect accessibility issues.
-            This application also fully passes the accessibility audits checked
-            by the ",
-            a(
-              href = "https://developers.google.com/web/tools/lighthouse",
-              "Google Developer Lighthouse tool"
-            ),
-            ". This means that this application:"
+            "This means that this application:"
           ),
           tags$div(tags$ul(
             tags$li("uses colours that have sufficient contrast"),

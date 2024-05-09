@@ -33,7 +33,7 @@ shhh(library(shinytest2))
 shhh(library(readr))
 shhh(library(rstudioapi))
 shhh(library(bslib))
-shhh(library(dfeshiny))
+# shhh(library(dfeshiny))
 shhh(library(ggiraph))
 
 shhh(library(data.table))
@@ -101,23 +101,21 @@ source("R/read_data.R")
 # Read in the data
 
 # 1 The distribution band data
-df_absence <- read_absence_data(file = "data/absence_bands_distributions.zip")
+df_absence <- read_absence_data(file = "data/absence_bands_distributions.csv")
 
 
-absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name", "region_code", "region_name", "old_la_code", "la_name", "school_type", "FSM_eligible", "SEN", "Gender", "NCyearActual", "Absence_band", "TotalPupils", "Area_name")
+absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name", "region_name", "region_code", "old_la_code", "new_la_code", "la_name", "school_type", "fsm_eligible", "sen_status", "gender", "NCyearActual", "pct5_OARate", "pct10_OARate", "pct15_OARate", "pct20_OARate", "pct25_OARate", "pct30_OARate", "pct35_OARate", "pct40_OARate", "pct45_OARate", "pct50_OARate", "pct50plus_OARate")
 colnames(df_absence) <- absence_col_names
-
 
 df_absence <- df_absence %>%
   mutate(
-    time_period = ifelse(nchar(time_period) == 6, paste0("20", substr(time_period, 3, 4), "/", substr(time_period, 5, 6)), time_period),
+    time_period = paste0(substr(time_period, 1, 4), "/", substr(time_period, 5, 6)),
     area_name = case_when(
       geographic_level == "National" ~ country_name,
       geographic_level == "Local authority" ~ la_name,
       TRUE ~ region_name # Default case if none of the above conditions are met
     )
-  ) %>%
-  filter(school_type != "Other") # removed the schools listed as Other and removed early years for now
+  )
 
 # Get geographical levels from data
 # Add geog lookup
@@ -126,8 +124,8 @@ geog_lookup <- df_absence %>%
   unique() %>%
   arrange(region_name, la_name) %>%
   mutate(la_name = case_when(
-    geographic_level == "Region" ~ "All",
-    geographic_level != "Region" ~ la_name
+    geographic_level == "Regional" ~ "All",
+    geographic_level != "Regional" ~ la_name
   ))
 
 geog_levels <- geog_lookup %>%
@@ -136,7 +134,7 @@ geog_levels <- geog_lookup %>%
   as.data.table()
 
 regions <- geog_lookup %>%
-  filter(geographic_level == "Region", !is.na(region_name), region_name != "NULL") %>%
+  filter(geographic_level == "Regional", !is.na(region_name), region_name != "NULL") %>%
   arrange(region_name) %>%
   pull(region_name) %>%
   unique()
@@ -151,19 +149,19 @@ choicesYear <- sort(unique(df_absence$time_period))
 
 choicesSchool_type <- unique(df_absence$school_type)
 
-expandable <- function(inputId, label, contents) {
-  govDetails <- shiny::tags$details(
-    class = "govuk-details", id = inputId,
-    shiny::tags$summary(
-      class = "govuk-details__summary",
-      shiny::tags$span(
-        class = "govuk-details__summary-text",
-        label
-      )
-    ),
-    shiny::tags$div(contents)
-  )
-}
+# expandable <- function(inputId, label, contents) {
+#   govDetails <- shiny::tags$details(
+#     class = "govuk-details", id = inputId,
+#     shiny::tags$summary(
+#       class = "govuk-details__summary",
+#       shiny::tags$span(
+#         class = "govuk-details__summary-text",
+#         label
+#       )
+#     ),
+#     shiny::tags$div(contents)
+#   )
+# }
 
 ## Custom rounding function ################################################
 
