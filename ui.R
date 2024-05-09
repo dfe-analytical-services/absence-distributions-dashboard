@@ -103,11 +103,11 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
-    shinyGovstyle::cookieBanner("DfE pupil absence distributions in schools in England"),
+    shinyGovstyle::cookieBanner("Pupil absence distributions in schools in England"),
     shinyGovstyle::header(
       main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "DfE pupil absence distributions in schools in England",
+      secondary_text = "Pupil absence distributions in schools in England",
       logo = "images/DfE_logo_landscape.png",
       logo_width = 150,
       logo_height = 32
