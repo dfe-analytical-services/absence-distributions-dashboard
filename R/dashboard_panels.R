@@ -80,7 +80,7 @@ homepage_panel <- function() {
                   p("The Enrolments and Proportion tabs shows information on the number and proportion of pupil enrolments in each Year
                     Group who fall into 5% bands for overall absence from 2016/17 to 2022/23."),
                   br(),
-                  p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Education Need and by sex."),
+                  p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Educational Need and by sex."),
                   br(),
                   p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
                     matching the selection."),
