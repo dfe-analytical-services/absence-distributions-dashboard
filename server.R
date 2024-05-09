@@ -202,7 +202,6 @@ server <- function(input, output, session) {
       )
     selectArea <- selectAreaReactive()
 
-
     req(input$selectYear, input$selectSchool_type, input$selectFSM, input$selectGender, input$selectSEN, selectArea)
 
     filtered_data <- df_absence %>%
@@ -330,7 +329,7 @@ server <- function(input, output, session) {
 
   # Download the underlying data button
   output$download_data <- downloadHandler(
-    filename = "data/absence_bands_distributions.zip",
+    filename = "data/absence_bands_distributions.csv",
     content = function(file) {
       write.csv(df_absence, file)
     }
