@@ -193,7 +193,7 @@ server <- function(input, output, session) {
   reactiveTable <- reactive({
     df_absence <- df_absence %>%
       mutate(
-       # time_period = paste0(substr(time_period, 1, 4), "/", substr(time_period, 5, 6)),
+        # time_period = paste0(substr(time_period, 1, 4), "/", substr(time_period, 5, 6)),
         area_name = case_when(
           geographic_level == "National" ~ country_name,
           geographic_level == "Local authority" ~ la_name,

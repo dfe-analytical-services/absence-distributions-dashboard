@@ -150,13 +150,13 @@ dashboard_panel <- function() {
             column(
               width = 3,
               selectizeInput("selectYear",
-                "Select a Year:",
+                "Select year:",
                 choices = choicesYear,
                 selected = "2022/23"
               ),
               selectizeInput(
                 inputId = "selectSchool_type",
-                label = "Select School Type:",
+                label = "Select school type:",
                 choices = choicesSchool_type,
                 multiple = "TRUE",
                 selected = c("State-funded primary", "State-funded secondary", "Special")
@@ -184,7 +184,7 @@ dashboard_panel <- function() {
               width = 3,
               selectizeInput(
                 inputId = "geography_choice",
-                label = "Choose geographic level:",
+                label = "Select geographic level:",
                 choices = c("National", "Regional", "Local authority"),
                 selected = "National",
                 width = "100%"
@@ -196,7 +196,7 @@ dashboard_panel <- function() {
                 condition = "input.geography_choice == 'Regional'",
                 selectizeInput(
                   inputId = "selectRegion",
-                  label = "Choose region:",
+                  label = "Select region:",
                   choices = regions,
                   selected = regions[1],
                   width = "100%",
@@ -207,7 +207,7 @@ dashboard_panel <- function() {
                 condition = "input.geography_choice == 'Local authority'",
                 selectizeInput(
                   inputId = "selectLA",
-                  label = "Choose local authority:",
+                  label = "Select local authority:",
                   choices = las,
                   selected = las[1],
                   width = "100%",
@@ -250,7 +250,7 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
-              "Proportions",
+              "Proportions of Year Group",
               fluidRow(
                 column(
                   width = 12,
