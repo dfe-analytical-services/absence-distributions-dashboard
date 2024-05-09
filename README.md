@@ -30,7 +30,9 @@ Please contact statistics.DEVELOPMENT@education.gov.uk if you have any questions
 
 ## Introduction 
 
-Give a brief overview of what your app is for here. 
+The dashboard provides users with an opportunity to investigate pupil absence at National, Regional and Local Authority geographic levels in 5% bandings for overall absence. Data is available across state-funded primary, secondary and special schools and can also be broken down by individual school type, and pupils year group, Special Educational Needs status, Free school Meal status and sex..
+
+Live version of the dashboard can be accessed at
 
 Add links to where each version of your app is deployed - e.g.
 
@@ -38,12 +40,17 @@ Add links to where each version of your app is deployed - e.g.
 - Pre-production - https://rsconnect-pp/rsc/dfe-published-data-qa
 - Development - https://rsconnect-pp/rsc/dev-dfe-published-data-qa
 
+The dashboard is split across multiple tabs:
 
+- <b>Pupil Enrolments</b> shows the number of pupil enrolments in each year group and 5% overall absence band for the selections chosen. 
+- <b>Proportions</b> shows the proportion of enrolments in each year group falling in each banding 5% overall absence band for the selections chosen
+
+The dashboard also includes further information on the data itself on the technical notes tab, alongside accessibility and information on where to find further support. 
+
+ 
 ---
 
 ## Requirements
-
-You should list out the software and programming skills needed, as well as any access requirements e.g.
 
 
 ### i. Software requirements (for running locally)
@@ -60,16 +67,11 @@ You should list out the software and programming skills needed, as well as any a
 
 - Particularly [R Shiny](https://shiny.rstudio.com/)
 
-### iii. Access requirements
 
-- Access to the Stats Development Team SQL modelling area (MA_SDT_NS_DATA) in T1PRANMSQL\SQLPROD,60125. Request access from Cam Race and forward on your request to the PDR mailbox (PupilData.REPOSITORY@education.gov.uk)
   
 ---
 
 ## How to use
-
-You should clearly lay out the steps needed to run your code here - generally, they will be similar to the below for Shiny apps:
-
 
 ### Running the app locally
 
@@ -109,10 +111,6 @@ The function tidy_code() is created in the Rprofile script and therefore is alwa
 
 ---
 
-## How to contribute
-
-Details on how to contribute to the app should go here, e.g.
-
 ### Flagging issues
 
 If you spot any issues with the application, please flag it in the "Issues" tab of this repository, and label as a bug.
@@ -125,4 +123,5 @@ Only members of the Statistics Development team can merge pull requests. Add lau
 
 ## Contact
 
-Add contact details of how to get in touch with your team.
+
+If you have any questions about the dashboard please contact [schools.statistics@education.gov.uk](mailto:schools.statistics@education.gov.uk).
