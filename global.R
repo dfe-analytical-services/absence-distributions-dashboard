@@ -83,17 +83,16 @@ appLoadingCSS <- "
 "
 
 site_title <- "Absence Distribution in Schools"
-site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
-site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
+site_primary <- "https://department-for-education.shinyapps.io/absence-distributions-dashboard/"
 # We can add further mirrors where necessary. Each one can generally handle
 # about 2,500 users simultaneously
-sites_list <- c(site_primary, site_overflow)
+sites_list <- c(site_primary)
 # Update this with your parent
 # publication name (e.g. the EES publication)
 ees_pub_name <- "Statistical publication"
 # Update with parent publication link
 ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/"
-google_analytics_key <- "Z967JJVQQX"
+google_analytics_key <- "9E4GQN2T4H"
 
 
 source("R/read_data.R")

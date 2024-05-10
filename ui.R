@@ -103,11 +103,11 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
-    shinyGovstyle::cookieBanner("DfE pupil absence distributions in schools in England"),
+    shinyGovstyle::cookieBanner("Pupil absence distributions in schools in England"),
     shinyGovstyle::header(
       main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "DfE pupil absence distributions in schools in England",
+      secondary_text = "Pupil absence distributions in schools in England",
       logo = "images/DfE_logo_landscape.png",
       logo_width = 150,
       logo_height = 32
@@ -121,8 +121,7 @@ ui <- function(input, output, session) {
         "In case of slowdown or connection issues due to high demand, we have
         produced two instances of this site which can be accessed at the
         following links: ",
-        "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
-        "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
+        "<a href=", site_primary, " id='link_site_1'>Site 1</a>"
       )
     ),
     shiny::navlistPanel(
