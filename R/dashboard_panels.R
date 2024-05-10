@@ -90,12 +90,9 @@ homepage_panel <- function() {
                     here. Throughout the pandemic, schools were advised to record pupils with a confirmed case of COVID-19 as absent due to
                     illness (Code I) which are included in the overall absence rates reported here."),
                   br(),
-
                   p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced."),
                   p("Pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications.")
-                  
-                  )
-                
+                )
               )
             )
           )
