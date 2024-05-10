@@ -121,8 +121,7 @@ ui <- function(input, output, session) {
         "In case of slowdown or connection issues due to high demand, we have
         produced two instances of this site which can be accessed at the
         following links: ",
-        "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
-        "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
+        "<a href=", site_primary, " id='link_site_1'>Site 1</a>"
       )
     ),
     shiny::navlistPanel(
