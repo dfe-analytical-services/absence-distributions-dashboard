@@ -86,7 +86,7 @@ site_title <- "Absence Distribution in Schools"
 site_primary <- "https://department-for-education.shinyapps.io/absence-distributions-dashboard/"
 # We can add further mirrors where necessary. Each one can generally handle
 # about 2,500 users simultaneously
-sites_list <- c(site_primary, site_overflow)
+sites_list <- c(site_primary)
 # Update this with your parent
 # publication name (e.g. the EES publication)
 ees_pub_name <- "Statistical publication"
