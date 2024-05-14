@@ -6,7 +6,7 @@ technical_panel <- function() {
       gov_row(
         column(
           12,
-          h3("Technical notes"),
+          h1("Technical notes"),
           br(),
           p("The dashboard provides data on the distribution of overall absence for pupils in English schools at national, regional and local authority geographic levels.
                     Data is available across state-funded primary, secondary and special schools and can also be broken
