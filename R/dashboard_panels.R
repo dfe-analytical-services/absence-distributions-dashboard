@@ -33,7 +33,14 @@ technical_panel <- function() {
           p("From 2015, the School Action and School Action Plus categories were combined to form one category of SEN support. Extra or different help is given from that provided as part of the school’s usual curriculum. The class teacher and special educational needs co-ordinator (SENCO) may receive advice or support from outside specialists. The criteria required for SEN Support varies in Local Authorities."),
           br(),
           h3("Suppression"),
-          p("The underlying data has not been supressed but pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications.")
+          p("The underlying data has not been supressed but pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications."),
+          br(),
+          h3("See the source code"),
+          p(
+            "The source code for this dashboard is available in our ",
+            a(href = "https://github.com/dfe-analytical-services/absence-distributions-dashboard", "GitHub repository", .noWS = c("after")),
+            "."
+          )
         )
       )
     )
