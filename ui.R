@@ -66,15 +66,15 @@ ui <- function(input, output, session) {
         href = "dfefavicon.png"
       ),
       # Add title for browser tabs
-      tags$title("DfE Absence Distribution in Schools")
+      tags$title("Pupil absence distributions in schools in England")
     ),
     use_shiny_title(),
     tags$html(lang = "en"),
     # Add meta description for search engines
     meta() %>%
       meta_general(
-        application_name = "DfE pupil absence distributions in schools in England: data dashboard",
-        description = "DfE pupil absence distributions in schools in England: data dashboard",
+        application_name = "Pupil absence distributions in schools in England: data dashboard",
+        description = "Pupil absence distributions in schools in England: data dashboard",
         robots = "index,follow",
         generator = "R-Shiny",
         subject = "stats development",
@@ -132,11 +132,6 @@ ui <- function(input, output, session) {
       homepage_panel(),
       dashboard_panel(),
       technical_panel(),
-      # support_panel(
-      #   team_email = " schools.statistics@education.gov.uk",
-      #   repo_name = "https://github.com/dfe-analytical-services/shiny-template",
-      #   form_url = "https://forms.office.com"
-      # ),
       a11y_panel(),
     ),
     gov_layout(
