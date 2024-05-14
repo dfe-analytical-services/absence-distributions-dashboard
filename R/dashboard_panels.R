@@ -149,7 +149,7 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width = 12,
-          h1("DfE pupil absence distributions in schools in England")
+          h1("Pupil absence distributions in schools in England")
         ),
         column(
           width = 12,
