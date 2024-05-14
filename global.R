@@ -86,7 +86,7 @@ site_title <- "Absence Distribution in Schools"
 site_primary <- "https://department-for-education.shinyapps.io/absence-distributions-dashboard/"
 # We can add further mirrors where necessary. Each one can generally handle
 # about 2,500 users simultaneously
-sites_list <- c(site_primary, site_overflow)
+sites_list <- c(site_primary)
 # Update this with your parent
 # publication name (e.g. the EES publication)
 ees_pub_name <- "Statistical publication"
@@ -147,20 +147,6 @@ las <- geog_lookup %>%
 choicesYear <- sort(unique(df_absence$time_period))
 
 choicesSchool_type <- unique(df_absence$school_type)
-
-# expandable <- function(inputId, label, contents) {
-#   govDetails <- shiny::tags$details(
-#     class = "govuk-details", id = inputId,
-#     shiny::tags$summary(
-#       class = "govuk-details__summary",
-#       shiny::tags$span(
-#         class = "govuk-details__summary-text",
-#         label
-#       )
-#     ),
-#     shiny::tags$div(contents)
-#   )
-# }
 
 ## Custom rounding function ################################################
 
