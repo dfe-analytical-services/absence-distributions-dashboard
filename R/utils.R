@@ -61,7 +61,7 @@ customDisconnectMessage <- function(refresh = "Refresh page",
           "with details of any problems with this resource."
         )
         #  ),
-        # htmltools::tags$p("If this persists, you can view tables and data via the ",htmltools::tags$a(href ='https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools', "Pupil attendance in schools")," release on Explore Education Statistics and please contact statistics.development@education.gov.uk with details of what you were trying to do.")
+        # htmltools::tags$p("If this persists, you can view tables and data via the ",htmltools::tags$a(href ='https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england', "Pupil absence in schools in England")," release on Explore Education Statistics and please contact statistics.development@education.gov.uk with details of what you were trying to do.")
       )
     ),
     htmltools::tags$div(id = "ss-overlay", style = "display: none;"),
