@@ -1,22 +1,10 @@
 <h1 align="center">
   <br>
-DfE Shiny template app
+DfE Pupil absence distributions in schools in England
   <br>
 </h1>
 
-**Before using this template, please contact the Statistics Development Team (statistics.development@education.gov.uk) to discuss your plans for setting up a DfE dashboard.**
-
 ---
-
-This template repository is for making accessible apps for published statistics in DfE. It includes a basic accessible shiny app with DfE styling, as well as templates for additional best practice documents like this README script, pull request templates and codes of conduct for contributing.
-
-There is a version of this template hosted for you to preview at https://department-for-education.shinyapps.io/dfe-shiny-template/.
-
-To use this template, click the green "use this template" button at the top of the repo. This will create a copy for you to work off of. 
-
-Please delete this header section when you are writing up the README file for your own app.
-
-Please contact statistics.DEVELOPMENT@education.gov.uk if you have any questions, or raise an issue on here if you have spotted something specific that we should change.
 
 <p align="center">
   <a href="#introduction">Introduction</a> |
@@ -30,15 +18,9 @@ Please contact statistics.DEVELOPMENT@education.gov.uk if you have any questions
 
 ## Introduction 
 
-The dashboard provides users with an opportunity to investigate pupil absence at National, Regional and Local Authority geographic levels in 5% bandings for overall absence. Data is available across state-funded primary, secondary and special schools and can also be broken down by individual school type, and pupils year group, Special Educational Needs status, Free school Meal status and sex..
+The dashboard provides users with an opportunity to investigate pupil absence at national, regional and local authority geographic levels in 5% bandings for overall absence. Data is available across state-funded primary, secondary and special schools and can also be broken down by individual school type, and pupils year group, Special Educational Needs status, Free school Meal status and sex.
 
-Live version of the dashboard can be accessed at
-
-Add links to where each version of your app is deployed - e.g.
-
-- Production - https://rsconnect/rsc/dfe-published-data-qa
-- Pre-production - https://rsconnect-pp/rsc/dfe-published-data-qa
-- Development - https://rsconnect-pp/rsc/dev-dfe-published-data-qa
+Live version of the dashboard can be accessed at https://department-for-education.shinyapps.io/absence-distributions-dashboard/
 
 The dashboard is split across multiple tabs:
 
@@ -117,7 +99,7 @@ If you spot any issues with the application, please flag it in the "Issues" tab 
 
 ### Merging pull requests
 
-Only members of the Statistics Development team can merge pull requests. Add lauraselby, cjrace and sarahmwong as requested reviewers, and the team will review before merging.
+Only members of the Statistics Development team can merge pull requests. Add cjrace as requested reviewers, and the team will review before merging.
 
 ---
 
