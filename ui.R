@@ -63,7 +63,8 @@ ui <- function(input, output, session) {
     title = tags$head(
       tags$link(
         rel = "shortcut icon",
-        href = "dfefavicon.png"
+        href = "dfefavicon.png",
+        alt = "Department for Education logo"
       ),
       # Add title for browser tabs
       tags$title("Pupil absence distributions in schools in England")
