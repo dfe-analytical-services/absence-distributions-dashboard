@@ -85,17 +85,6 @@ ui <- function(input, output, session) {
     shinyjs::useShinyjs(),
     customDisconnectMessage(),
     useShinydashboard(),
-    # Setting up cookie consent based on a cookie recording the consent:
-    # https://book.javascript-for-r.com/shiny-cookies.html
-    tags$head(
-      tags$script(
-        src = paste0(
-          "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
-          "dist/js.cookie.min.js"
-        )
-      ),
-      tags$script(src = "cookie-consent.js")
-    ),
     tags$head(includeHTML(("google-analytics.html"))),
     tags$head(
       tags$link(
@@ -104,7 +93,8 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
-    shinyGovstyle::cookieBanner("Pupil absence distributions in schools in England"),
+    dfe_cookie_script(),
+    cookie_banner_ui("cookies", name = "Pupil Absence Distributions"),
     shinyGovstyle::header(
       main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
@@ -134,6 +124,12 @@ ui <- function(input, output, session) {
       dashboard_panel(),
       technical_panel(),
       a11y_panel(),
+      dfeshiny::support_panel(
+        team_email = "schools.statistics@education.gov.uk",
+        repo_name = "https://github.com/dfe-analytical-services/absence-distributions-dashboard",
+        publication_name = "Pupil absence in schools in England",
+        publication_slug = "pupil-absence-in-schools-in-england"
+      )
     ),
     gov_layout(
       size = "full",
