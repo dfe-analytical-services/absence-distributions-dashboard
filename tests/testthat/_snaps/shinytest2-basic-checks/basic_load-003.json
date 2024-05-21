@@ -1,13 +1,8 @@
 {
   "input": {
-    "cookieAccept": 0,
-    "cookieLink": 0,
-    "cookieReject": 0,
     "cookies": {
 
     },
-    "hideAccept": 0,
-    "hideReject": 0,
     "navlistPanel": "Homepage",
     "tabsetpanels": "Pupil Enrolments"
   },
