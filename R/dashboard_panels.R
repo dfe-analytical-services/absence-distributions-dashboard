@@ -173,18 +173,18 @@ dashboard_panel <- function() {
               width = 3,
               selectizeInput("selectFSM",
                 label = ("Select FSM status:"), multiple = TRUE,
-                choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible", "Unclassified"="Unclassified"),
+                choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible", "Unclassified" = "Unclassified"),
                 selected = c("Not Eligible", "Eligible", "Unclassified")
               ),
               selectizeInput("selectSEN",
                 label = ("Select SEN status:"), multiple = TRUE,
-                choices = c("Any special educational need", "No identified special educational need", "Unclassified"="Unclassified"),
+                choices = c("Any special educational need", "No identified special educational need", "Unclassified" = "Unclassified"),
                 selected = c("Any special educational need", "No identified special educational need", "Unclassified")
               ),
               selectizeInput("selectGender",
                 label = ("Select sex:"), multiple = TRUE,
-                choices = c("Female", "Male","Unclassified"="Unclassified"),
-                selected = c("Female", "Male","Unclassified")
+                choices = c("Female", "Male", "Unclassified" = "Unclassified"),
+                selected = c("Female", "Male", "Unclassified")
               )
             ), # end of col
             column(
