@@ -59,9 +59,9 @@ homepage_panel <- function() {
           p("Data was last updated on 10 May 2024."),
           br()
         ),
-        
+
         ## Left panel -------------------------------------------------------
-        
+
         column(
           6,
           div(
@@ -104,9 +104,9 @@ homepage_panel <- function() {
             )
           )
         ),
-        
+
         ## Right panel ------------------------------------------------------
-        
+
         column(
           6,
           div(
@@ -143,7 +143,7 @@ dashboard_panel <- function() {
   tabPanel(
     value = "dashboard",
     "Dashboard",
-    
+
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       gov_row(
@@ -157,9 +157,9 @@ dashboard_panel <- function() {
             column(
               width = 3,
               selectizeInput("selectYear",
-                             "Select year:",
-                             choices = choicesYear,
-                             selected = "2022/23"
+                "Select year:",
+                choices = choicesYear,
+                selected = "2022/23"
               ),
               selectizeInput(
                 inputId = "selectSchool_type",
@@ -172,19 +172,19 @@ dashboard_panel <- function() {
             column(
               width = 3,
               selectizeInput("selectFSM",
-                             label = ("Select FSM status:"), multiple = TRUE,
-                             choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible", "Unclassified" = "Unclassified"),
-                             selected = c("Not Eligible", "Eligible", "Unclassified")
+                label = ("Select FSM status:"), multiple = TRUE,
+                choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible", "Unclassified" = "Unclassified"),
+                selected = c("Not Eligible", "Eligible", "Unclassified")
               ),
               selectizeInput("selectSEN",
-                             label = ("Select SEN status:"), multiple = TRUE,
-                             choices = c("Any special educational need", "No identified special educational need", "Unclassified" = "Unclassified"),
-                             selected = c("Any special educational need", "No identified special educational need", "Unclassified")
+                label = ("Select SEN status:"), multiple = TRUE,
+                choices = c("Any special educational need", "No identified special educational need", "Unclassified" = "Unclassified"),
+                selected = c("Any special educational need", "No identified special educational need", "Unclassified")
               ),
               selectizeInput("selectGender",
-                             label = ("Select sex:"), multiple = TRUE,
-                             choices = c("Female", "Male", "Unclassified" = "Unclassified"),
-                             selected = c("Female", "Male", "Unclassified")
+                label = ("Select sex:"), multiple = TRUE,
+                choices = c("Female", "Male", "Unclassified" = "Unclassified"),
+                selected = c("Female", "Male", "Unclassified")
               )
             ), # end of col
             column(
