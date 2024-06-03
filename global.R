@@ -148,20 +148,6 @@ choicesYear <- sort(unique(df_absence$time_period))
 
 choicesSchool_type <- unique(df_absence$school_type)
 
-# expandable <- function(inputId, label, contents) {
-#   govDetails <- shiny::tags$details(
-#     class = "govuk-details", id = inputId,
-#     shiny::tags$summary(
-#       class = "govuk-details__summary",
-#       shiny::tags$span(
-#         class = "govuk-details__summary-text",
-#         label
-#       )
-#     ),
-#     shiny::tags$div(contents)
-#   )
-# }
-
 ## Custom rounding function ################################################
 
 roundFiveUp <- function(value, dp) {

@@ -63,18 +63,19 @@ ui <- function(input, output, session) {
     title = tags$head(
       tags$link(
         rel = "shortcut icon",
-        href = "dfefavicon.png"
+        href = "dfefavicon.png",
+        alt = "Department for Education logo"
       ),
       # Add title for browser tabs
-      tags$title("DfE Absence Distribution in Schools")
+      tags$title("Pupil absence distributions in schools in England")
     ),
     use_shiny_title(),
     tags$html(lang = "en"),
     # Add meta description for search engines
     meta() %>%
       meta_general(
-        application_name = "DfE pupil absence distributions in schools in England: data dashboard",
-        description = "DfE pupil absence distributions in schools in England: data dashboard",
+        application_name = "Pupil absence distributions in schools in England: data dashboard",
+        description = "Pupil absence distributions in schools in England: data dashboard",
         robots = "index,follow",
         generator = "R-Shiny",
         subject = "stats development",
@@ -84,17 +85,6 @@ ui <- function(input, output, session) {
     shinyjs::useShinyjs(),
     customDisconnectMessage(),
     useShinydashboard(),
-    # Setting up cookie consent based on a cookie recording the consent:
-    # https://book.javascript-for-r.com/shiny-cookies.html
-    tags$head(
-      tags$script(
-        src = paste0(
-          "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
-          "dist/js.cookie.min.js"
-        )
-      ),
-      tags$script(src = "cookie-consent.js")
-    ),
     tags$head(includeHTML(("google-analytics.html"))),
     tags$head(
       tags$link(
@@ -103,7 +93,8 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
-    shinyGovstyle::cookieBanner("Pupil absence distributions in schools in England"),
+    dfe_cookie_script(),
+    cookie_banner_ui("cookies", name = "Pupil Absence Distributions"),
     shinyGovstyle::header(
       main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
@@ -119,7 +110,7 @@ ui <- function(input, output, session) {
         "This Dashboard is in beta phase and we are still reviewing performance
         and reliability. ",
         "In case of slowdown or connection issues due to high demand, we have
-        produced two instances of this site which can be accessed at the
+        produced other instances of this site which can be accessed at the
         following links: ",
         "<a href=", site_primary, " id='link_site_1'>Site 1</a>"
       )
@@ -132,12 +123,13 @@ ui <- function(input, output, session) {
       homepage_panel(),
       dashboard_panel(),
       technical_panel(),
-      # support_panel(
-      #   team_email = " schools.statistics@education.gov.uk",
-      #   repo_name = "https://github.com/dfe-analytical-services/shiny-template",
-      #   form_url = "https://forms.office.com"
-      # ),
       a11y_panel(),
+      dfeshiny::support_panel(
+        team_email = "schools.statistics@education.gov.uk",
+        repo_name = "https://github.com/dfe-analytical-services/absence-distributions-dashboard",
+        publication_name = "Pupil absence in schools in England",
+        publication_slug = "pupil-absence-in-schools-in-england"
+      )
     ),
     gov_layout(
       size = "full",

@@ -6,7 +6,7 @@ technical_panel <- function() {
       gov_row(
         column(
           12,
-          h3("Technical notes"),
+          h1("Technical notes"),
           br(),
           p("The dashboard provides data on the distribution of overall absence for pupils in English schools at national, regional and local authority geographic levels.
                     Data is available across state-funded primary, secondary and special schools and can also be broken
@@ -33,7 +33,14 @@ technical_panel <- function() {
           p("From 2015, the School Action and School Action Plus categories were combined to form one category of SEN support. Extra or different help is given from that provided as part of the school’s usual curriculum. The class teacher and special educational needs co-ordinator (SENCO) may receive advice or support from outside specialists. The criteria required for SEN Support varies in Local Authorities."),
           br(),
           h3("Suppression"),
-          p("The underlying data has not been supressed but pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications.")
+          p("The underlying data has not been supressed but pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications."),
+          br(),
+          h3("See the source code"),
+          p(
+            "The source code for this dashboard is available in our ",
+            a(href = "https://github.com/dfe-analytical-services/absence-distributions-dashboard", "GitHub repository", .noWS = c("after")),
+            "."
+          )
         )
       )
     )
@@ -142,7 +149,7 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width = 12,
-          h1("DfE pupil absence distributions in schools in England")
+          h1("Pupil absence distributions in schools in England")
         ),
         column(
           width = 12,
