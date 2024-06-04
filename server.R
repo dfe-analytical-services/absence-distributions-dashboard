@@ -8,14 +8,6 @@ server <- function(input, output, session) {
   hide(id = "loading-content", anim = TRUE, animType = "fade")
   show("app-content")
 
-  output$cookie_status <- dfeshiny::cookie_banner_server(
-    "cookies",
-    input_cookies = reactive(input$cookies),
-    input_clear = reactive(input$cookie_consent_clear),
-    parent_session = session,
-    google_analytics_key = google_analytics_key
-  )
-
   # The template uses bookmarking to store input choices in the url. You can
   # exclude specific inputs (for example extra info created for a datatable
   # or plotly chart) using the list below, but it will need updating to match
@@ -62,6 +54,99 @@ server <- function(input, output, session) {
     }
   })
 
+  observeEvent(input$cookies, {
+    if (!is.null(input$cookies)) {
+      if (!("dfe_analytics" %in% names(input$cookies))) {
+        shinyjs::show(id = "cookieMain")
+      } else {
+        shinyjs::hide(id = "cookieMain")
+        msg <- list(
+          name = "dfe_analytics",
+          value = input$cookies$dfe_analytics
+        )
+        session$sendCustomMessage("analytics-consent", msg)
+        if ("cookies" %in% names(input)) {
+          if ("dfe_analytics" %in% names(input$cookies)) {
+            if (input$cookies$dfe_analytics == "denied") {
+              ga_msg <- list(name = paste0("_ga_", google_analytics_key))
+              session$sendCustomMessage("cookie-remove", ga_msg)
+            }
+          }
+        }
+      }
+    } else {
+      shinyjs::hide(id = "cookieMain")
+    }
+  })
+
+  # Need these set of observeEvent to create a path through the cookie banner
+  observeEvent(input$cookieAccept, {
+    msg <- list(
+      name = "dfe_analytics",
+      value = "granted"
+    )
+    session$sendCustomMessage("cookie-set", msg)
+    session$sendCustomMessage("analytics-consent", msg)
+    shinyjs::show(id = "cookieAcceptDiv")
+    shinyjs::hide(id = "cookieMain")
+  })
+
+  observeEvent(input$cookieReject, {
+    msg <- list(
+      name = "dfe_analytics",
+      value = "denied"
+    )
+    session$sendCustomMessage("cookie-set", msg)
+    session$sendCustomMessage("analytics-consent", msg)
+    shinyjs::show(id = "cookieRejectDiv")
+    shinyjs::hide(id = "cookieMain")
+  })
+
+  observeEvent(input$hideAccept, {
+    shinyjs::toggle(id = "cookieDiv")
+  })
+
+  observeEvent(input$hideReject, {
+    shinyjs::toggle(id = "cookieDiv")
+  })
+
+  observeEvent(input$remove, {
+    shinyjs::toggle(id = "cookieMain")
+    msg <- list(name = "dfe_analytics", value = "denied")
+    session$sendCustomMessage("cookie-remove", msg)
+    session$sendCustomMessage("analytics-consent", msg)
+    print(input$cookies)
+  })
+
+  cookies_data <- reactive({
+    input$cookies
+  })
+
+  output$cookie_status <- renderText({
+    cookie_text_stem <- "To better understand the reach of our dashboard tools,
+    this site uses cookies to identify numbers of unique users as part of Google
+    Analytics. You have chosen to"
+    cookie_text_tail <- "the use of cookies on this website."
+    if ("cookies" %in% names(input)) {
+      if ("dfe_analytics" %in% names(input$cookies)) {
+        if (input$cookies$dfe_analytics == "granted") {
+          paste(cookie_text_stem, "accept", cookie_text_tail)
+        } else {
+          paste(cookie_text_stem, "reject", cookie_text_tail)
+        }
+      }
+    } else {
+      "Cookies consent has not been confirmed."
+    }
+  })
+
+  observeEvent(input$cookieLink, {
+    # Need to link here to where further info is located.  You can
+    # updateTabsetPanel to have a cookie page for instance
+    updateTabsetPanel(session, "navlistPanel",
+      selected = "Support and feedback"
+    )
+  })
 
   t <- list(
     family = "arial",
@@ -150,6 +235,11 @@ server <- function(input, output, session) {
         )
       )
 
+    # add in a total column
+    filtered_data <- filtered_data %>%
+      mutate(Total = rowSums(across(starts_with("Year"))))
+
+
     # turn into percentages
     filtered_data_perc <- df_absence %>%
       filter(
@@ -161,8 +251,16 @@ server <- function(input, output, session) {
         gender %in% input$selectGender
       ) %>%
       group_by(NCyearActual) %>%
-      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>% # add the numbers for all the filters together
-      mutate(total = rowSums(across(starts_with("pct")))) %>%
+      summarise(across(starts_with("pct"), sum, na.rm = TRUE))
+
+    # find the total number in each band and add it as a row at the bottom called Year 99
+    totals <- filtered_data_perc %>%
+      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>%
+      mutate(NCyearActual = 99) # call the total 99 for now and rename later as it is expecting a number
+
+    # Bind the total row to the original data
+    filtered_data_perc <- bind_rows(filtered_data_perc, totals) %>%
+      mutate(total = rowSums(across(starts_with("pct")))) %>% # add the numbers for all the filters together
       mutate(across(starts_with("pct"), ~ . / total, .names = "percent_{.col}")) %>%
       select(-total) %>%
       select(-starts_with("pct")) %>%
@@ -186,6 +284,7 @@ server <- function(input, output, session) {
           TRUE ~ "Other" # Default case for any other values
         )
       )
+
     list(filtered_data = filtered_data, filtered_data_perc = filtered_data_perc)
   })
 
@@ -202,14 +301,25 @@ server <- function(input, output, session) {
 
     # Conditionally format numeric columns
     datatable(
-      # data_to_display[, ordered_columns, drop = FALSE],
       data_to_display,
       options = list(
         scrollX = TRUE,
-        paging = FALSE
+        paging = FALSE,
+        initComplete = JS(
+          "function(settings, json) {",
+          "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column
+          "$('td:nth-child(13)').css('font-weight', 'bold');", # Bold the 13th column
+          "}"
+        )
       ),
       rownames = FALSE,
       colnames = col_names
+    ) %>% formatCurrency(
+      columns = c(2:ncol(data_to_display)), # Apply to columns 2 to the end
+      currency = "", # No currency symbol
+      interval = 3, # Interval for comma separation
+      digits = 0,
+      mark = "," # Comma as the separator
     )
   })
 
@@ -217,15 +327,23 @@ server <- function(input, output, session) {
     data_to_display <- (reactiveTable()$filtered_data_perc)
     datatable(data_to_display)
 
+    # rename columns
     col_names <- names(data_to_display)
     col_names[col_names == "percent_band"] <- "Overall Absence Band"
+    col_names[col_names == "Year 99"] <- "All Years"
 
     # Conditionally format numeric columns for display
     datatable(
       data_to_display,
       options = list(
         scrollX = TRUE,
-        paging = FALSE
+        paging = FALSE,
+        initComplete = JS(
+          "function(settings, json) {",
+          "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column
+          "$('td:nth-child(13)').css('font-weight', 'bold');", # Bold the 13th column
+          "}"
+        )
       ),
       rownames = FALSE,
       colnames = col_names
