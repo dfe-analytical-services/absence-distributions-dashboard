@@ -284,7 +284,6 @@ server <- function(input, output, session) {
           TRUE ~ "Other" # Default case for any other values
         )
       )
-
     list(filtered_data = filtered_data, filtered_data_perc = filtered_data_perc)
   })
 
