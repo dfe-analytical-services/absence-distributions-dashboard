@@ -235,8 +235,8 @@ dashboard_panel <- function() {
                 class = "downloadButton"
               )
             ) # end of col
-          ) # end of row with download in
-        ), # end of col with selectors in
+          ) # end of row with download
+        ), # end of col with selectors
         column(
           width = 12,
           tabsetPanel(
