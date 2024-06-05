@@ -62,7 +62,6 @@ server <- function(input, output, session) {
     }
   })
 
-
   t <- list(
     family = "arial",
     size = 10,
@@ -150,6 +149,11 @@ server <- function(input, output, session) {
         )
       )
 
+    # add in a total column
+    filtered_data <- filtered_data %>%
+      mutate(Total = rowSums(across(starts_with("Year"))))
+
+
     # turn into percentages
     filtered_data_perc <- df_absence %>%
       filter(
@@ -161,8 +165,16 @@ server <- function(input, output, session) {
         gender %in% input$selectGender
       ) %>%
       group_by(NCyearActual) %>%
-      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>% # add the numbers for all the filters together
-      mutate(total = rowSums(across(starts_with("pct")))) %>%
+      summarise(across(starts_with("pct"), sum, na.rm = TRUE))
+
+    # find the total number in each band and add it as a row at the bottom called Year 99
+    totals <- filtered_data_perc %>%
+      summarise(across(starts_with("pct"), sum, na.rm = TRUE)) %>%
+      mutate(NCyearActual = 99) # call the total 99 for now and rename later as it is expecting a number
+
+    # Bind the total row to the original data
+    filtered_data_perc <- bind_rows(filtered_data_perc, totals) %>%
+      mutate(total = rowSums(across(starts_with("pct")))) %>% # add the numbers for all the filters together
       mutate(across(starts_with("pct"), ~ . / total, .names = "percent_{.col}")) %>%
       select(-total) %>%
       select(-starts_with("pct")) %>%
@@ -202,14 +214,25 @@ server <- function(input, output, session) {
 
     # Conditionally format numeric columns
     datatable(
-      # data_to_display[, ordered_columns, drop = FALSE],
       data_to_display,
       options = list(
         scrollX = TRUE,
-        paging = FALSE
+        paging = FALSE,
+        initComplete = JS(
+          "function(settings, json) {",
+          "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column
+          "$('td:nth-child(13)').css('font-weight', 'bold');", # Bold the 13th column
+          "}"
+        )
       ),
       rownames = FALSE,
       colnames = col_names
+    ) %>% formatCurrency(
+      columns = c(2:ncol(data_to_display)), # Apply to columns 2 to the end
+      currency = "", # No currency symbol
+      interval = 3, # Interval for comma separation
+      digits = 0,
+      mark = "," # Comma as the separator
     )
   })
 
@@ -217,15 +240,23 @@ server <- function(input, output, session) {
     data_to_display <- (reactiveTable()$filtered_data_perc)
     datatable(data_to_display)
 
+    # rename columns
     col_names <- names(data_to_display)
     col_names[col_names == "percent_band"] <- "Overall Absence Band"
+    col_names[col_names == "Year 99"] <- "All Years"
 
     # Conditionally format numeric columns for display
     datatable(
       data_to_display,
       options = list(
         scrollX = TRUE,
-        paging = FALSE
+        paging = FALSE,
+        initComplete = JS(
+          "function(settings, json) {",
+          "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column
+          "$('td:nth-child(13)').css('font-weight', 'bold');", # Bold the 13th column
+          "}"
+        )
       ),
       rownames = FALSE,
       colnames = col_names

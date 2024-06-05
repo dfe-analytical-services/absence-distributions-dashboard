@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.4.0",
+    "Version": "4.3.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -42,7 +42,7 @@
     },
     "MASS": {
       "Package": "MASS",
-      "Version": "7.3-60.2",
+      "Version": "7.3-60",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -53,13 +53,13 @@
         "stats",
         "utils"
       ],
-      "Hash": "2f342c46163b0b54d7b64d1f798e2c78"
+      "Hash": "a56a6365b3fa73293ea8d084be0d9bb0"
     },
     "Matrix": {
       "Package": "Matrix",
-      "Version": "1.7-0",
+      "Version": "1.6-4",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "https://packagemanager.posit.co/cran/2023-12-06",
       "Requirements": [
         "R",
         "grDevices",
@@ -70,7 +70,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "1920b2f11133b12350024297d8a4ff4a"
+      "Hash": "d9c655b30a2edc6bb2244c1d1e8d549d"
     },
     "R.cache": {
       "Package": "R.cache",
@@ -205,13 +205,13 @@
     },
     "backports": {
       "Package": "backports",
-      "Version": "1.4.1",
+      "Version": "1.5.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R"
       ],
-      "Hash": "c39fbec8a30d23e721980b8afb31984c"
+      "Hash": "e1e1b9d75c37401117b636b7ae50827a"
     },
     "base64enc": {
       "Package": "base64enc",
@@ -290,7 +290,7 @@
       "Package": "cachem",
       "Version": "1.1.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "fastmap",
         "rlang"
@@ -468,11 +468,11 @@
       "Version": "0.2.0",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "dfe-analytical-services",
       "RemoteRepo": "dfeshiny",
       "RemoteRef": "main",
       "RemoteSha": "fb0a97efd819c4735c3e57dc3b294a5ad2911ef5",
+      "RemoteHost": "api.github.com",
       "Requirements": [
         "RCurl",
         "checkmate",
@@ -562,14 +562,14 @@
       "Package": "farver",
       "Version": "2.1.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "680887028577f3fa2a81e410ed0d6e42"
     },
     "fastmap": {
       "Package": "fastmap",
       "Version": "1.2.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "aa5e1cd11c2d15497494c5292d7ffcc8"
     },
     "fontawesome": {
@@ -610,7 +610,7 @@
       "Package": "ggiraph",
       "Version": "0.8.10",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "Rcpp",
         "cli",
@@ -703,14 +703,14 @@
     },
     "highr": {
       "Package": "highr",
-      "Version": "0.10",
+      "Version": "0.11",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "xfun"
       ],
-      "Hash": "06230136b2d2b9ba5805e1963fa6e890"
+      "Hash": "d65ba49117ca223614f71b60d85b8ab7"
     },
     "hms": {
       "Package": "hms",
@@ -820,7 +820,7 @@
     },
     "knitr": {
       "Package": "knitr",
-      "Version": "1.46",
+      "Version": "1.47",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -832,7 +832,7 @@
         "xfun",
         "yaml"
       ],
-      "Hash": "6e008ab1d696a5283c79765fa7b56b47"
+      "Hash": "7c99b2d55584b982717fcc0950378612"
     },
     "labeling": {
       "Package": "labeling",
@@ -860,7 +860,7 @@
       "Package": "lattice",
       "Version": "0.22-6",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "grDevices",
@@ -932,7 +932,7 @@
       "Package": "mgcv",
       "Version": "1.9-1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "Matrix",
         "R",
@@ -970,7 +970,7 @@
       "Package": "nlme",
       "Version": "3.1-164",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "graphics",
@@ -984,7 +984,7 @@
       "Package": "openssl",
       "Version": "2.2.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "askpass"
       ],
@@ -1198,7 +1198,7 @@
       "Package": "renv",
       "Version": "1.0.7",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "utils"
       ],
@@ -1219,7 +1219,7 @@
       "Package": "rmarkdown",
       "Version": "2.27",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "bslib",
@@ -1499,7 +1499,7 @@
       "Package": "systemfonts",
       "Version": "1.1.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "cpp11",
@@ -1732,7 +1732,7 @@
       "Package": "xfun",
       "Version": "0.44",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "grDevices",
         "stats",
