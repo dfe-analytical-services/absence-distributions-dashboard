@@ -150,7 +150,7 @@ dashboard_panel <- function() {
           width = 12,
           fluidRow(
             column(
-              width = 3,
+              width = 4,
               selectizeInput("selectYear",
                 "Select year:",
                 choices = choicesYear,
@@ -165,7 +165,7 @@ dashboard_panel <- function() {
               )
             ), # end of col
             column(
-              width = 3,
+              width = 4,
               selectizeInput("selectFSM",
                 label = ("Select FSM status:"), multiple = TRUE,
                 choices = c("Eligible" = "Eligible", "Not Eligible" = "Not Eligible", "Unclassified" = "Unclassified"),
@@ -183,17 +183,14 @@ dashboard_panel <- function() {
               )
             ), # end of col
             column(
-              width = 3,
+              width = 4,
               selectizeInput(
                 inputId = "geography_choice",
                 label = "Select geographic level:",
                 choices = c("National", "Regional", "Local authority"),
                 selected = "National",
                 width = "100%"
-              )
-            ), # end of col
-            column(
-              width = 3,
+              ),
               conditionalPanel(
                 condition = "input.geography_choice == 'Regional'",
                 selectizeInput(
