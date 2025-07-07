@@ -319,9 +319,9 @@ server <- function(input, output, session) {
 
   # Download the underlying data button
   output$download_data <- downloadHandler(
-    filename = "data/absence_bands_distributions.csv",
+    filename = "absence_bands_distributions.zip",
     content = function(file) {
-      write.csv(df_absence, file)
+      file.copy("data/absence_bands_distributions.zip", file)
     }
   )
 

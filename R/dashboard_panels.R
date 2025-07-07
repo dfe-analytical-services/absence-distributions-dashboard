@@ -7,12 +7,10 @@ technical_panel <- function() {
         column(
           12,
           h1("Technical notes"),
-          br(),
           p("The dashboard provides data on the distribution of overall absence for pupils in English schools at national, regional and local authority geographic levels.
                     Data is available across state-funded primary, secondary and special schools and can also be broken
                     down by individual school type and pupil characteristics. Drop-down menus at the top of the page allow customisation of year and
                     breakdowns. "),
-          br(),
           h2("Absence rates"),
           p("Absence rates are calculated by dividing the number of sessions coded as an absence by the total number of possible sessions, where possible sessions include on-site attendance, approved off-site educational activity (for example, work experience) and absence. The banding rates are as follows:"),
           tags$ul(
@@ -28,15 +26,12 @@ technical_panel <- function() {
             tags$li(" 45-50% = Pupils whose overall absence was in the range 45.00-49.99%,"),
             tags$li(" 50%+ = Pupils whose overall absence was in the range 50.00-100%,")
           ),
-          br(),
           h2("Special Educational Needs"),
           p("A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
           p("A pupil has an EHC plan when a formal assessment has been made. A document is in place that sets out the child’s need and the extra help they should receive. EHC plans were introduced in September 2014 replacing Statements of SEN, with these being phased out by April 2018. This category therefore includes Statements of SEN for the years up to 2018."),
           p("From 2015, the School Action and School Action Plus categories were combined to form one category of SEN support. Extra or different help is given from that provided as part of the school’s usual curriculum. The class teacher and special educational needs co-ordinator (SENCO) may receive advice or support from outside specialists. The criteria required for SEN Support varies in Local Authorities."),
-          br(),
           h2("Suppression"),
           p("The underlying data has not been supressed but pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications."),
-          br(),
           h2("See the source code"),
           p(
             "The source code for this dashboard is available in our ",
@@ -57,9 +52,7 @@ homepage_panel <- function() {
         column(
           12,
           h1("Pupil absence distributions in schools in England"),
-          br(),
           p("Data was last updated on 10 May 2024."),
-          br()
         ),
 
         ## Left panel -------------------------------------------------------
@@ -228,14 +221,14 @@ dashboard_panel <- function() {
           fluidRow(
             column(
               width = 12,
-              paste("Download the underlying data for this dashboard:"),
               br(),
-              downloadButton(
+              download_button(
                 outputId = "download_data",
-                label = "Download data",
-                icon = shiny::icon("download"),
-                class = "downloadButton"
-              )
+                button_label = "Download all underlying data",
+                file_type = "ZIP",
+                file_size = "2.7 MB"
+              ),
+              br()
             ) # end of col
           ) # end of row with download
         ), # end of col with selectors
