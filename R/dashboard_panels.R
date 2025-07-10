@@ -49,81 +49,71 @@ homepage_panel <- function() {
     "Homepage",
     gov_main_layout(
       gov_row(
-        column(
-          12,
-          h1("Pupil absence distributions in schools in England"),
-          p("Data was last updated on 10 May 2024."),
-        ),
+        h1("Pupil absence distributions in schools in England"),
+        p("Data was last updated on 10 May 2024."),
 
         ## Left panel -------------------------------------------------------
-
-        column(
-          6,
-          div(
-            div(
-              class = "panel panel-info",
-              div(
-                class = "panel-heading",
-                style = "color: white;font-size: 18px;font-style: bold;
-                background-color: #1d70b8;",
-                h2("Contents")
-              ),
-              div(
-                class = "panel-body",
-                tags$div(
-                  p("The dashboard provides data on the distribution of overall absence for pupils in English schools at national, regional and local authority geographic levels.
+        layout_columns(
+          col_widths = c(6, 6),
+          card(
+            card_header(
+              h2("Contents")
+            ),
+            card_body(
+              p("The dashboard provides data on the distribution of overall absence for pupils in English schools at national, regional and local authority geographic levels.
                     Data is available across state-funded primary, secondary and special schools and can also be broken
                     down by individual school type and pupil characteristics. Drop-down menus at the top of the page allow customisation of year and
                     breakdowns. "),
-                  br(),
-                  p("Users can select a geographic level prior to selecting further options at
+              p("Users can select a geographic level prior to selecting further options at
                   regional or local authority level."),
-                  br(),
-                  p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year
+              p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year
                     group who fall into 5% bands for overall absence from 2016/17 to 2022/23."),
-                  br(),
-                  p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Educational Need status and by sex. A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
-                  br(),
-                  p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
+              p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Educational Need status and by sex. A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
+              p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
                     matching the selection. To remove a characteristic delete it from the selection box."),
-                  br(),
-                  p("During the 2020/21 and 2021/22 academic years, schools were advised to record where a pupil not attending in circumstances relating to COVID-19  as Code X. Where a pupil was not attending in these circumstances,
+              p("During the 2020/21 and 2021/22 academic years, schools were advised to record where a pupil not attending in circumstances relating to COVID-19  as Code X. Where a pupil was not attending in these circumstances,
                     schools were expected to provide immediate access to remote education and they are not included in the absence rates reported
                     here. Throughout the pandemic, schools were advised to record pupils with a confirmed case of COVID-19 as absent due to
                     illness (Code I) which are included in the overall absence rates reported here."),
-                  br(),
-                  p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced."),
-                  p("Pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications.")
-                )
-              )
+              p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced."),
+              p("Pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications.")
             )
-          )
-        ),
+          ),
 
-        ## Right panel ------------------------------------------------------
+          ## Right panel ------------------------------------------------------
 
-        column(
-          6,
-          div(
-            div(
-              class = "panel panel-info",
-              div(
-                class = "panel-heading",
-                style = "color: white;font-size: 18px;font-weight: bold;background-color: #1d70b8;",
-                h2("Background Info")
-              ),
-              div(
-                class = "panel-body",
-                p("These figures are derived from census data submitted to the Department for Education (DfE)."),
-                p("This dashboard has been developed as an accompaniment to DfE's national statistics on pupil absence. You can access these publications through the links below:"),
-                br(),
-                p(tags$a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england", "Pupil absence in schools in England")),
-                br(),
-                p(tags$a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england/2022-23-autumn-and-spring-term", "Pupil absence in schools in England: autumn and spring terms")),
-                br(),
-                p(tags$a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england-autumn-term/2021-22-autumn-term", "Pupil absence in schools in England: autumn term")),
-                br(),
-                p(tags$a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools", "Pupil attendance in schools in England: Pupil attendance and absence data including termly national statistics and fortnightly experimental statistics derived from DfE’s regular attendance data")),
+          card(
+            card_header(
+              h2("Background Info")
+            ),
+            card_body(
+              p("These figures are derived from census data submitted to the Department for Education (DfE)."),
+              p("This dashboard has been developed as an accompaniment to DfE's national statistics on pupil absence. You can access these publications through the links below:"),
+              tags$ul(
+                tags$li(
+                  external_link(
+                    href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england",
+                    "Pupil absence in schools in England"
+                  )
+                ),
+                tags$li(
+                  external_link(
+                    href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england/2022-23-autumn-and-spring-term",
+                    "Pupil absence in schools in England: autumn and spring terms"
+                  )
+                ),
+                tags$li(
+                  external_link(
+                    href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england-autumn-term/2021-22-autumn-term",
+                    "Pupil absence in schools in England: autumn term"
+                  )
+                ),
+                tags$li(
+                  external_link(
+                    href = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools",
+                    "Pupil attendance in schools in England: Pupil attendance and absence data including termly national statistics and fortnightly experimental statistics derived from DfE’s regular attendance data"
+                  )
+                )
               )
             )
           )
