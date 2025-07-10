@@ -1,0 +1,2 @@
+dashboard_name: "absence-distributions-dashboard"
+deploy_target: "shinyapps"
