@@ -25,7 +25,17 @@ technical_panel <- function() {
           p(" 35-40% = Pupils whose overall absence was in the range 35.00-39.99%,"),
           p(" 40-45% = Pupils whose overall absence was in the range 40.00-44.99%,"),
           p(" 45-50% = Pupils whose overall absence was in the range 45.00-49.99%,"),
-          p(" 50%+ = Pupils whose overall absence was in the range 50.00-100%,"),
+          p(" 50-55% = Pupils whose overall absence was in the range 50.00-54.99%,"),
+          p(" 55-60% = Pupils whose overall absence was in the range 55.00-59.99%,"),
+          p(" 60-65% = Pupils whose overall absence was in the range 60.00-64.99%,"),
+          p(" 65-70% = Pupils whose overall absence was in the range 65.00-69.99%,"),
+          p(" 70-75% = Pupils whose overall absence was in the range 70.00-74.99%,"),
+          p(" 75-80% = Pupils whose overall absence was in the range 75.00-79.99%,"),
+          p(" 80-85% = Pupils whose overall absence was in the range 80.00-84.99%,"),
+          p(" 85-90% = Pupils whose overall absence was in the range 85.00-89.99%,"),
+          p(" 90-95% = Pupils whose overall absence was in the range 90.00-95.99%,"),
+          p(" 95-99.9% = Pupils whose overall absence was in the range 95.00-99.99%,"),
+          p(" 100% = Pupils whose overall absence was 100%,"),
           br(),
           h3("Special Educational Needs"),
           p("A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
@@ -33,7 +43,7 @@ technical_panel <- function() {
           p("From 2015, the School Action and School Action Plus categories were combined to form one category of SEN support. Extra or different help is given from that provided as part of the school’s usual curriculum. The class teacher and special educational needs co-ordinator (SENCO) may receive advice or support from outside specialists. The criteria required for SEN Support varies in Local Authorities."),
           br(),
           h3("Suppression"),
-          p("The underlying data has not been supressed but pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications."),
+          p("The underlying data has not been supressed."),
           br(),
           h3("See the source code"),
           p(
@@ -56,7 +66,7 @@ homepage_panel <- function() {
           12,
           h1("Pupil absence distributions in schools in England"),
           br(),
-          p("Data was last updated on 10 May 2024."),
+          p("Data was last updated on 7 August 2024."),
           br()
         ),
 
@@ -85,7 +95,7 @@ homepage_panel <- function() {
                   regional or local authority level."),
                   br(),
                   p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year
-                    group who fall into 5% bands for overall absence from 2016/17 to 2022/23."),
+                    group who fall into 5% bands for overall absence from 2016/17 to 2023/24."),
                   br(),
                   p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Educational Need status and by sex. A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
                   br(),
@@ -97,8 +107,8 @@ homepage_panel <- function() {
                     here. Throughout the pandemic, schools were advised to record pupils with a confirmed case of COVID-19 as absent due to
                     illness (Code I) which are included in the overall absence rates reported here."),
                   br(),
-                  p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced."),
-                  p("Pupils who are unclassified for SEN status or FSM status are not displayed in the app which may result in different headcounts to other published absence publications.")
+                  p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced.")
+                  
                 )
               )
             )
@@ -159,7 +169,7 @@ dashboard_panel <- function() {
               selectizeInput("selectYear",
                 "Select year:",
                 choices = choicesYear,
-                selected = "2022/23"
+                selected = "2023/24"
               ),
               selectizeInput(
                 inputId = "selectSchool_type",
