@@ -1,19 +1,9 @@
 {
   "input": {
-    "a11y_to_dashboard": 0,
     "absence_distributions": 0,
     "accessibility_statement": 0,
-    "cookies": {
-
-    },
-    "cookies_banner-cookies_accept": 0,
-    "cookies_banner-cookies_link": 0,
-    "cookies_banner-cookies_reject": 0,
-    "cookies_panel-cookies_analytics": "no",
-    "cookies_panel-submit_btn": 0,
     "cookies_statement": 0,
-    "cookies_to_dashboard": 0,
-    "geography_choice": "National",
+    "geography_choice": "Regional",
     "left_nav": "absence_distributions",
     "pages": "dashboard",
     "selectFSM": [
@@ -21,11 +11,7 @@
       "Not Eligible",
       "Unclassified"
     ],
-    "selectGender": [
-      "Female",
-      "Male",
-      "Unclassified"
-    ],
+    "selectGender": null,
     "selectLA": "Derby",
     "selectRegion": "East Midlands",
     "selectSEN": [
@@ -40,14 +26,6 @@
     ],
     "selectYear": "2022/23",
     "support": 0,
-    "support_to_dashboard": 0,
-    "tabDataNumber_cell_clicked": {
-
-    },
-    "tabDataNumber_cells_selected": [
-
-    ],
-    "tabDataNumber_columns_selected": null,
     "tabDataNumber_rows_all": [
       1,
       2,
@@ -61,164 +39,22 @@
       10,
       11
     ],
-    "tabDataNumber_rows_current": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11
-    ],
-    "tabDataNumber_rows_selected": null,
-    "tabDataNumber_search": "",
-    "tabDataNumber_state": {
-      "start": 0,
-      "length": 10,
-      "order": [
-
-      ],
-      "search": {
-        "search": "",
-        "smart": true,
-        "regex": false,
-        "caseInsensitive": true
-      },
-      "columns": [
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        }
-      ]
-    },
     "tabsetpanels": "Pupil Enrolments",
     "technical_notes": 0,
     "user_guide": 0
   },
   "output": {
-    "tabDataNumber": {
+    "tabDataNumber": [
+      "",
+      "NULL",
+      "c(\"shiny.silent.error\", \"validation\")"
+    ],
+    "tabDataProportion": {
       "x": {
         "style": "bootstrap5",
         "filter": "none",
         "vertical": false,
-        "container": "<table class=\"table table-striped table-hover row-border order-column display\">\n  <thead>\n    <tr>\n      <th>Overall Absence Band<\/th>\n      <th>Year 1<\/th>\n      <th>Year 2<\/th>\n      <th>Year 3<\/th>\n      <th>Year 4<\/th>\n      <th>Year 5<\/th>\n      <th>Year 6<\/th>\n      <th>Year 7<\/th>\n      <th>Year 8<\/th>\n      <th>Year 9<\/th>\n      <th>Year 10<\/th>\n      <th>Year 11<\/th>\n      <th>Total<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
+        "container": "<table class=\"table table-striped table-hover row-border order-column display\">\n  <thead>\n    <tr>\n      <th>Overall Absence Band<\/th>\n      <th>Year 1<\/th>\n      <th>Year 2<\/th>\n      <th>Year 3<\/th>\n      <th>Year 4<\/th>\n      <th>Year 5<\/th>\n      <th>Year 6<\/th>\n      <th>Year 7<\/th>\n      <th>Year 8<\/th>\n      <th>Year 9<\/th>\n      <th>Year 10<\/th>\n      <th>Year 11<\/th>\n      <th>All Years<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
         "options": {
           "scrollX": true,
           "paging": false,
@@ -226,51 +62,51 @@
           "columnDefs": [
             {
               "targets": 1,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 2,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 3,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 4,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 5,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 6,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 7,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 8,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 9,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 10,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 11,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "targets": 12,
-              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"\", 0, 3, \",\", \".\", true, null);\n  }"
+              "render": "function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"
             },
             {
               "className": "dt-right",
@@ -338,7 +174,7 @@
               "targets": 11
             },
             {
-              "name": "Total",
+              "name": "Year 99",
               "targets": 12
             }
           ],
@@ -459,8 +295,5 @@
         }
       ]
     }
-  },
-  "export": {
-
   }
 }
