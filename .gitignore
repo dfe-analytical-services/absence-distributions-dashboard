@@ -4,3 +4,5 @@
 .Ruserdata
 R/random_data_generator.R
 data/absence_bands_distributions.meta.csv
+data/absence_bands_distributions_dummy.csv
+data/absence_bands_distributions.csv

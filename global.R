@@ -100,8 +100,8 @@ source("R/read_data.R")
 # Read in the data
 
 # 1 The distribution band data
-df_absence <- read_absence_data(file = "data/absence_bands_distributions_dummy.csv")
-# df_absence <- read_absence_data(file = "data/absence_bands_distributions.csv")
+df_absence <- read_absence_data(file = "data/absence_bands_distributions_dummy.zip")
+# df_absence <- read_absence_data(file = "data/absence_bands_distributions.zip")
 
 absence_col_names <- c(
   "time_identifier", "time_period", "geographic_level", "country_code",
