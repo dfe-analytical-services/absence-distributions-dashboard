@@ -19,8 +19,6 @@ shhh(library(tidyr))
 shhh(library(tools))
 shhh(library(testthat))
 shhh(library(stringr))
-shhh(library(shinydashboard))
-shhh(library(shinyWidgets))
 shhh(library(shinyGovstyle))
 shhh(library(shinytitle))
 shhh(library(dplyr))
@@ -89,9 +87,9 @@ site_primary <- "https://department-for-education.shinyapps.io/absence-distribut
 sites_list <- c(site_primary)
 # Update this with your parent
 # publication name (e.g. the EES publication)
-ees_pub_name <- "Statistical publication"
+ees_pub_name <- "Pupil absence in schools in England"
 # Update with parent publication link
-ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/"
+ees_pub_url <- "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england"
 google_analytics_key <- "9E4GQN2T4H"
 
 
@@ -100,7 +98,10 @@ source("R/read_data.R")
 # Read in the data
 
 # 1 The distribution band data
-df_absence <- read_absence_data(file = "data/absence_bands_distributions.csv")
+# Note that CSV data files of > 10 MB should be avoided whereever possible.
+# Above 10 MB, CSV files should either be zipped or data should be stored in
+# a more efficient format such as Parquet.
+df_absence <- read_absence_data(file = "data/absence_bands_distributions.zip")
 
 
 absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name", "region_name", "region_code", "old_la_code", "new_la_code", "la_name", "school_type", "fsm_eligible", "sen_status", "gender", "NCyearActual", "pct5_OARate", "pct10_OARate", "pct15_OARate", "pct20_OARate", "pct25_OARate", "pct30_OARate", "pct35_OARate", "pct40_OARate", "pct45_OARate", "pct50_OARate", "pct50plus_OARate")

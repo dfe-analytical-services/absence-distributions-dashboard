@@ -8,11 +8,15 @@ server <- function(input, output, session) {
   hide(id = "loading-content", anim = TRUE, animType = "fade")
   show("app-content")
 
-  output$cookie_status <- dfeshiny::cookie_banner_server(
-    "cookies",
-    input_cookies = reactive(input$cookies),
-    input_clear = reactive(input$cookie_consent_clear),
+  # Manage cookie consent
+  output$cookies_status <- dfeshiny::cookies_banner_server(
+    input_cookies = shiny::reactive(input$cookies),
     parent_session = session,
+    google_analytics_key = google_analytics_key
+  )
+
+  dfeshiny::cookies_panel_server(
+    input_cookies = shiny::reactive(input$cookies),
     google_analytics_key = google_analytics_key
   )
 
@@ -43,8 +47,48 @@ server <- function(input, output, session) {
     updateQueryString(url)
   })
 
+  # Navigation ================================================================
+  ## Main content left navigation ---------------------------------------------
+  observeEvent(
+    input$absence_distributions,
+    nav_select("left_nav", "absence_distributions")
+  )
+  observeEvent(input$user_guide, nav_select("left_nav", "user_guide"))
+  observeEvent(
+    input$technical_notes,
+    nav_select("left_nav", "technical_notes")
+  )
+
+  ## Footer links -------------------------------------------------------------
+  observeEvent(
+    input$support,
+    nav_select("pages", "support")
+  )
+  observeEvent(
+    input$accessibility_statement,
+    nav_select("pages", "accessibility_statement")
+  )
+  observeEvent(
+    input$cookies_statement,
+    nav_select("pages", "cookies_statement")
+  )
+
+  ## Back links to main dashboard ---------------------------------------------
+  observeEvent(
+    input$support_to_dashboard,
+    nav_select("pages", "dashboard")
+  )
+  observeEvent(
+    input$cookies_to_dashboard,
+    nav_select("pages", "dashboard")
+  )
+  observeEvent(
+    input$a11y_to_dashboard,
+    nav_select("pages", "dashboard")
+  )
+
   observe({
-    if (input$navlistPanel == "dashboard") {
+    if (input$left_nav == "absence_distributions") {
       change_window_title(
         session,
         paste0(
@@ -56,7 +100,7 @@ server <- function(input, output, session) {
         session,
         paste0(
           site_title, " - ",
-          input$navlistPanel
+          input$left_nav
         )
       )
     }
@@ -218,6 +262,8 @@ server <- function(input, output, session) {
       options = list(
         scrollX = TRUE,
         paging = FALSE,
+        searching = FALSE,
+        info = FALSE,
         initComplete = JS(
           "function(settings, json) {",
           "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column
@@ -238,7 +284,6 @@ server <- function(input, output, session) {
 
   output$tabDataProportion <- renderDataTable({
     data_to_display <- (reactiveTable()$filtered_data_perc)
-    datatable(data_to_display)
 
     # rename columns
     col_names <- names(data_to_display)
@@ -251,6 +296,8 @@ server <- function(input, output, session) {
       options = list(
         scrollX = TRUE,
         paging = FALSE,
+        searching = FALSE,
+        info = FALSE,
         initComplete = JS(
           "function(settings, json) {",
           "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column
@@ -275,9 +322,9 @@ server <- function(input, output, session) {
 
   # Download the underlying data button
   output$download_data <- downloadHandler(
-    filename = "data/absence_bands_distributions.csv",
+    filename = "absence_bands_distributions.zip",
     content = function(file) {
-      write.csv(df_absence, file)
+      file.copy("data/absence_bands_distributions.zip", file)
     }
   )
 
