@@ -108,7 +108,6 @@ homepage_panel <- function() {
                     illness (Code I) which are included in the overall absence rates reported here."),
                   br(),
                   p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced.")
-                  
                 )
               )
             )
