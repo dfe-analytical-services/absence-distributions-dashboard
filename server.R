@@ -262,6 +262,8 @@ server <- function(input, output, session) {
       options = list(
         scrollX = TRUE,
         paging = FALSE,
+        searching = FALSE,
+        info = FALSE,
         initComplete = JS(
           "function(settings, json) {",
           "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column
@@ -282,7 +284,6 @@ server <- function(input, output, session) {
 
   output$tabDataProportion <- renderDataTable({
     data_to_display <- (reactiveTable()$filtered_data_perc)
-    datatable(data_to_display)
 
     # rename columns
     col_names <- names(data_to_display)
@@ -295,6 +296,8 @@ server <- function(input, output, session) {
       options = list(
         scrollX = TRUE,
         paging = FALSE,
+        searching = FALSE,
+        info = FALSE,
         initComplete = JS(
           "function(settings, json) {",
           "$('td:nth-child(1)').css('font-weight', 'bold');", # Bold the first column

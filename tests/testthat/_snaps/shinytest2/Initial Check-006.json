@@ -57,6 +57,8 @@
         "options": {
           "scrollX": true,
           "paging": false,
+          "searching": false,
+          "info": false,
           "initComplete": "function(settings, json) {\n$('td:nth-child(1)').css('font-weight', 'bold');\n$('td:nth-child(13)').css('font-weight', 'bold');\n}",
           "columnDefs": [
             {
@@ -303,6 +305,8 @@
         "options": {
           "scrollX": true,
           "paging": false,
+          "searching": false,
+          "info": false,
           "initComplete": "function(settings, json) {\n$('td:nth-child(1)').css('font-weight', 'bold');\n$('td:nth-child(13)').css('font-weight', 'bold');\n}",
           "columnDefs": [
             {
