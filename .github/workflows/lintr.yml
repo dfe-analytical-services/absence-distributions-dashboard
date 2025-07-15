@@ -14,6 +14,6 @@ permissions:
 
 jobs:
   lint:
-    uses: dfe-analytical-services/dfeshiny/.github/workflows/lintr_reusable.yaml@lintr-reusable-patch
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/lintr_reusable.yaml@main
     with:
       is_package: "false"
