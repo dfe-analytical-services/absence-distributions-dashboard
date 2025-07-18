@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-data/absence_bands_distributions_real.csv
+data/absence_bands_distributions.csv
 data/absence_bands_distributions_dummy.csv
+data/absence_bands_distributions.meta.csv
 R/random_data_generator.R
