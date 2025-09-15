@@ -3,7 +3,7 @@ filename,status
 data/absence_bands_distributions.meta.csv, reference
 
 data/absence_bands_distributions_dummy.csv,reference
-data/absence_bands_distributions_dummy.zip,published
+data/absence_bands_distributions_dummy.zip,reference
 
 data/absence_bands_distributions.csv,reference
-data/absence_bands_distributions.zip,reference
+data/absence_bands_distributions.zip,published
