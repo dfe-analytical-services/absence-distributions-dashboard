@@ -59,10 +59,10 @@ homepage_panel <- function() {
     "Homepage",
     gov_main_layout(
       gov_row(
-          h1("Pupil absence distributions in schools in England"),
-          br(),
-          p("Data was last updated on 23 September 2025."),
-          br(),
+        h1("Pupil absence distributions in schools in England"),
+        br(),
+        p("Data was last updated on 23 September 2025."),
+        br(),
         ## Left panel -------------------------------------------------------
         layout_columns(
           col_widths = c(6, 6),
@@ -76,21 +76,21 @@ homepage_panel <- function() {
                     down by individual school type and pupil characteristics. Drop-down menus at the top of the page allow customisation of year and
                     breakdowns. "),
               p("Users can select a geographic level prior to selecting further options at regional or local authority level."),
-                  br(),
-                  p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year
+              br(),
+              p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year
                     group who fall into 5% bands for overall absence from 2016/17 to 2023/24."),
-                  br(),
-                  p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Educational Need status and by sex. A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
-                  br(),
-                  p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
+              br(),
+              p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Educational Need status and by sex. A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
+              br(),
+              p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
                     matching the selection. To remove a characteristic delete it from the selection box."),
               p("During the 2020/21 and 2021/22 academic years, schools were advised to record where a pupil not attending in circumstances relating to COVID-19  as Code X. Where a pupil was not attending in these circumstances,
                     schools were expected to provide immediate access to remote education and they are not included in the absence rates reported
                     here. Throughout the pandemic, schools were advised to record pupils with a confirmed case of COVID-19 as absent due to
                     illness (Code I) which are included in the overall absence rates reported here."),
-                  br(),
-                  p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced.")
-                )
+              br(),
+              p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced.")
+            )
           ),
 
           ## Right panel ------------------------------------------------------

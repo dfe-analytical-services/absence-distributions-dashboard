@@ -24,9 +24,9 @@
       "Unclassified"
     ],
     "selectSchool_type": [
+      "State-funded primary",
       "State-funded secondary",
-      "Special",
-      "State-funded primary"
+      "Special"
     ],
     "selectYear": "2022/23",
     "support": 0,
@@ -41,7 +41,17 @@
       8,
       9,
       10,
-      11
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
     ],
     "tabsetpanels": "Proportions of Year Group",
     "technical_notes": 0,
