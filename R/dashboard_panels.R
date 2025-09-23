@@ -61,7 +61,7 @@ homepage_panel <- function() {
       gov_row(
           h1("Pupil absence distributions in schools in England"),
           br(),
-          p("Data was last updated on 7 August 2025."),
+          p("Data was last updated on 23 September 2025."),
           br(),
         ## Left panel -------------------------------------------------------
         layout_columns(
@@ -157,7 +157,7 @@ dashboard_panel <- function() {
               selectizeInput("selectYear",
                 "Select year:",
                 choices = choicesYear,
-                selected = "2022/23"
+                selected = "2023/24"
               ),
               selectizeInput(
                 inputId = "selectSchool_type",
