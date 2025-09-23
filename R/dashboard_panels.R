@@ -75,8 +75,7 @@ homepage_panel <- function() {
                     Data is available across state-funded primary, secondary and special schools and can also be broken
                     down by individual school type and pupil characteristics. Drop-down menus at the top of the page allow customisation of year and
                     breakdowns. "),
-              p("Users can select a geographic level prior to selecting further options at
-                  regional or local authority level."),
+              p("Users can select a geographic level prior to selecting further options at regional or local authority level."),
                   br(),
                   p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year
                     group who fall into 5% bands for overall absence from 2016/17 to 2023/24."),
@@ -90,10 +89,8 @@ homepage_panel <- function() {
                     here. Throughout the pandemic, schools were advised to record pupils with a confirmed case of COVID-19 as absent due to
                     illness (Code I) which are included in the overall absence rates reported here."),
                   br(),
-                  p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced."),
+                  p("This release is derived from the pupil level school census from which further analysis such as school level absence rates can be produced.")
                 )
-              )
-            )
           ),
 
           ## Right panel ------------------------------------------------------
