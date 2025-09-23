@@ -58,19 +58,11 @@
 #
 
 ui <- function(input, output, session) {
-  fluidPage(
-    # use_tota11y(),
-    title = tags$head(
-      tags$link(
-        rel = "shortcut icon",
-        href = "dfefavicon.png",
-        alt = "Department for Education logo"
-      ),
-      # Add title for browser tabs
-      tags$title("Pupil absence distributions in schools in England")
-    ),
-    use_shiny_title(),
+  page_fluid(
+    # Metadata for app ========================================================
     tags$html(lang = "en"),
+    tags$head(HTML(paste0("<title>", site_title, "</title>"))), # set in global.R
+    tags$head(tags$link(rel = "shortcut icon", href = "dfefavicon.png")),
     # Add meta description for search engines
     meta() %>%
       meta_general(
@@ -83,9 +75,10 @@ ui <- function(input, output, session) {
         referrer = "no-referrer"
       ),
     shinyjs::useShinyjs(),
-    customDisconnectMessage(),
-    useShinydashboard(),
-    tags$head(includeHTML(("google-analytics.html"))),
+    # Required to make the title update based on tab changes
+    shinytitle::use_shiny_title(),
+
+    ## Custom CSS -------------------------------------------------------------
     tags$head(
       tags$link(
         rel = "stylesheet",
@@ -93,86 +86,125 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
-    dfe_cookie_script(),
-    cookie_banner_ui("cookies", name = "Pupil Absence Distributions"),
-    shinyGovstyle::header(
-      main_text = "",
-      main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "Pupil absence distributions in schools in England",
-      logo = "images/DfE_logo_landscape.png",
-      logo_width = 150,
-      logo_height = 32
+    dfeshiny::custom_disconnect_message(
+      links = site_primary,
+      publication_name = ees_pub_name,
+      publication_link = ees_pub_url
+    ),
+    tags$head(includeHTML(("google-analytics.html"))),
+    dfe_cookies_script(),
+    dfeshiny::cookies_banner_ui(
+      name = site_title
+    ),
+    dfeshiny::header(
+      header = site_title,
+      logo_alt_text = "The logo for the Department for Education",
+      main_alt_text = "Link to the Department for education home page"
     ),
     shinyGovstyle::banner(
       "beta banner",
       "beta",
       paste0(
         "This Dashboard is in beta phase and we are still reviewing performance
-        and reliability. ",
-        "In case of slowdown or connection issues due to high demand, we have
-        produced other instances of this site which can be accessed at the
-        following links: ",
-        "<a href=", site_primary, " id='link_site_1'>Site 1</a>"
+        and reliability. "
       )
     ),
-    shiny::navlistPanel(
-      "",
-      id = "navlistPanel",
-      widths = c(2, 8),
-      well = FALSE,
-      homepage_panel(),
-      dashboard_panel(),
-      technical_panel(),
-      a11y_panel(),
-      dfeshiny::support_panel(
-        team_email = "schools.statistics@education.gov.uk",
-        repo_name = "https://github.com/dfe-analytical-services/absence-distributions-dashboard",
-        publication_name = "Pupil absence in schools in England",
-        publication_slug = "pupil-absence-in-schools-in-england"
+    # Page navigation =========================================================
+    # This switches between the supporting pages in the footer and the main dashboard
+    gov_main_layout(
+      bslib::navset_hidden(
+        id = "pages",
+        nav_panel(
+          "dashboard",
+          ## Main dashboard ---------------------------------------------------
+          layout_columns(
+            # Override default wrapping breakpoints to avoid text overlap
+            col_widths = breakpoints(sm = c(4, 8), md = c(3, 9), lg = c(2, 9)),
+            ## Left navigation ------------------------------------------------
+            dfe_contents_links(
+              links_list = c(
+                "Absence distributions",
+                "User guide",
+                "Technical notes"
+              )
+            ),
+            ## Dashboard panels -----------------------------------------------
+            bslib::navset_hidden(
+              id = "left_nav",
+              nav_panel(
+                "absence_distributions", dashboard_panel()
+              ),
+              nav_panel(
+                "user_guide", homepage_panel()
+              ),
+              nav_panel(
+                "technical_notes", technical_panel()
+              )
+            )
+          )
+        ),
+        ## Footer pages -------------------------------------------------------
+        nav_panel(
+          "support",
+          layout_columns(
+            col_widths = c(-2, 8, -2),
+
+            # Add backlink
+            actionLink(
+              class = "govuk-back-link",
+              style = "margin: 0",
+              "support_to_dashboard",
+              "Back to dashboard"
+            ),
+            dfeshiny::support_panel(
+              team_email = "schools.statistics@education.gov.uk",
+              repo_name = "https://github.com/dfe-analytical-services/absence-distributions-dashboard",
+              publication_name = ees_pub_name,
+              publication_slug = ees_pub_url
+            )
+          )
+        ),
+        nav_panel(
+          "accessibility_statement",
+          layout_columns(
+            col_widths = c(-2, 8, -2),
+
+            # Add backlink
+            actionLink(
+              class = "govuk-back-link",
+              style = "margin: 0",
+              "a11y_to_dashboard",
+              "Back to dashboard"
+            ),
+            a11y_panel()
+          )
+        ),
+        nav_panel(
+          "cookies_statement",
+          layout_columns(
+            col_widths = c(-2, 8, -2),
+
+            # Add backlink
+            actionLink(
+              class = "govuk-back-link",
+              style = "margin: 0",
+              "cookies_to_dashboard",
+              "Back to dashboard"
+            ),
+            cookies_panel_ui(google_analytics_key = google_analytics_key)
+          )
+        )
       )
     ),
-    gov_layout(
-      size = "full",
-      tags$br(),
-      tags$br(),
-      tags$br(),
-      tags$br(),
-      tags$br()
-    ),
-    tags$script(
-      src = "script.js"
-    ),
-    tags$script(HTML(
-      "
-    function plotZoom(el){
-        el = $(el);
-        var parent = el.parent().parent();
-        if(el.attr('data-full_screen') === 'false') {
-            $('html').css('visibility', 'hidden');
-            parent.addClass('full-screen').trigger('resize').hide().show();
-            $('.fullscreen-button').text('Exit full screen');
-            el.attr('data-full_screen', 'true');
-            setTimeout(function() {
-              $('html').css('visibility', 'visible');
-            }, 700);
-        } else {
-            parent.removeClass('full-screen').trigger('resize').hide().show();
-            $('.fullscreen-button').text('View full screen');
-            el.attr('data-full_screen', 'false');
-        }
-    }
-    $(function(){
-       $('.plotly-full-screen  .plotly.html-widget').append(
-        `
-        <div style='position: relative;'>
-            <button onclick=plotZoom(this) class='plot-zoom' data-full_screen='false' title='Full screen'>
-                <a href='#' class='govuk-link fullscreen-button'>View full screen</a>
-            </button>
-        </div>
-        `);
-    })
-    "
-    )),
-    footer(full = TRUE)
+
+    # Footer ==================================================================
+    shinyGovstyle::footer(
+      full = TRUE,
+      links = c(
+        "Support",
+        "Accessibility statement",
+        "Cookies statement"
+      )
+    )
   )
 }

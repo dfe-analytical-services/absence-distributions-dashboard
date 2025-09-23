@@ -12,6 +12,9 @@
 # datafiles_log.csv.
 
 read_absence_data <- function(file) {
-  datain <- readr::read_csv(file)
+  datain <- readr::read_csv(
+    file,
+    show_col_types = FALSE
+  )
   return(datain)
 }

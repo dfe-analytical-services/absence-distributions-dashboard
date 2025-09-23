@@ -19,8 +19,6 @@ shhh(library(tidyr))
 shhh(library(tools))
 shhh(library(testthat))
 shhh(library(stringr))
-shhh(library(shinydashboard))
-shhh(library(shinyWidgets))
 shhh(library(shinyGovstyle))
 shhh(library(shinytitle))
 shhh(library(dplyr))
@@ -89,9 +87,9 @@ site_primary <- "https://department-for-education.shinyapps.io/absence-distribut
 sites_list <- c(site_primary)
 # Update this with your parent
 # publication name (e.g. the EES publication)
-ees_pub_name <- "Statistical publication"
+ees_pub_name <- "Pupil absence in schools in England"
 # Update with parent publication link
-ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/"
+ees_pub_url <- "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england"
 google_analytics_key <- "9E4GQN2T4H"
 
 
