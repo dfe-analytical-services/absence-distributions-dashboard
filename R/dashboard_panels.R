@@ -81,10 +81,13 @@ homepage_panel <- function() {
               h2("Contents")
             ),
             card_body(
-              p("The dashboard provides data on the distribution of overall absence for pupils in English schools at national, regional and local authority geographic levels.
-                    Data is available across state-funded primary, secondary and special schools and can also be broken
-                    down by individual school type and pupil characteristics. Drop-down menus at the top of the page allow customisation of year and
-                    breakdowns. "),
+              p("The dashboard provides data on the distribution of overall
+              absence for pupils in English schools at national, regional
+              and local authority geographic levels.Data is available across
+              state-funded primary, secondary and special schools and can also
+              be broken down by individual school type and pupil characteristics.
+                Drop-down menus at the top of the page allow customisation of year
+                and breakdowns. "),
               p("Users can select a geographic level prior to selecting further options at regional or local authority level."),
               br(),
               p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year

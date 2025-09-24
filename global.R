@@ -91,14 +91,11 @@ ees_pub_name <- "Pupil absence in schools in England"
 ees_pub_url <- "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england"
 google_analytics_key <- "9E4GQN2T4H"
 
-
 source("R/read_data.R")
 
 # Read in the data
 
 # 1 The distribution band data
-# 1 The distribution band data
-# df_absence <- read_absence_data(file = "data/absence_bands_distributions_dummy.zip")
 df_absence <- read_absence_data(file = "data/absence_bands_distributions.zip")
 
 absence_col_names <- c(
