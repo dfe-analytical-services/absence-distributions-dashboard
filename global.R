@@ -32,6 +32,8 @@ shhh(library(readr))
 shhh(library(rstudioapi))
 shhh(library(bslib))
 shhh(library(ggiraph))
+shhh(library(data.table))
+shhh(library(dfeshiny))
 
 
 # Functions --------------------------------------------------------------------
