@@ -24,16 +24,26 @@ technical_panel <- function() {
             tags$li("35 - 40%: Pupils whose overall absence was in the range 35.00 to 39.99%,"),
             tags$li("40 - 45%: Pupils whose overall absence was in the range 40.00 to 44.99%,"),
             tags$li("45 - 50%: Pupils whose overall absence was in the range 45.00 to 49.99%,"),
-            tags$li("50 - 55% = Pupils whose overall absence was in the range 50.00-54.99%,"),
-            tags$li("55 - 60% = Pupils whose overall absence was in the range 55.00-59.99%,"),
-            tags$li("60 - 65% = Pupils whose overall absence was in the range 60.00-64.99%,"),
-            tags$li("65 - 70% = Pupils whose overall absence was in the range 65.00-69.99%,"),
-            tags$li("70 - 75% = Pupils whose overall absence was in the range 70.00-74.99%,"),
-            tags$li("75 - 80% = Pupils whose overall absence was in the range 75.00-79.99%,"),
-            tags$li("80 - 85% = Pupils whose overall absence was in the range 80.00-84.99%,"),
-            tags$li("85 - 90% = Pupils whose overall absence was in the range 85.00-89.99%,"),
-            tags$li("90 - 95% = Pupils whose overall absence was in the range 90.00-95.99%,"),
-            tags$li("95 - 99.9% = Pupils whose overall absence was in the range 95.00-99.99%,"),
+            tags$li("50 - 55% = Pupils whose overall absence was
+                    in the range 50.00-54.99%,"),
+            tags$li("55 - 60% = Pupils whose overall absence was
+                    in the range 55.00-59.99%,"),
+            tags$li("60 - 65% = Pupils whose overall absence was
+                    in the range 60.00-64.99%,"),
+            tags$li("65 - 70% = Pupils whose overall absence was
+                    in the range 65.00-69.99%,"),
+            tags$li("70 - 75% = Pupils whose overall absence wa
+                    s in the range 70.00-74.99%,"),
+            tags$li("75 - 80% = Pupils whose overall absence was
+                    in the range 75.00-79.99%,"),
+            tags$li("80 - 85% = Pupils whose overall absence was
+                    in the range 80.00-84.99%,"),
+            tags$li("85 - 90% = Pupils whose overall absence was
+                    in the range 85.00-89.99%,"),
+            tags$li("90 - 95% = Pupils whose overall absence was
+                    in the range 90.00-95.99%,"),
+            tags$li("95 - 99.9% = Pupils whose overall absence was
+                    in the range 95.00-99.99%,"),
             tags$li("100% = Pupils whose overall absence was 100%")
           ),
           h2("Special Educational Needs"),
@@ -80,7 +90,11 @@ homepage_panel <- function() {
               p("The Pupil Enrolments and Proportions by Year Group tabs shows information on the number and proportion of pupil enrolments in each year
                     group who fall into 5% bands for overall absence from 2016/17 to 2023/24."),
               br(),
-              p("The distributions may be broken down to show numbers and proportions for pupil enrolments grouped by their Free School Meal status, Special Educational Need status and by sex. A SEN status of 'Any special educational need' includes pupils who have either an EHC Plan or SEN Support status."),
+              p("The distributions may be broken down to show numbers and
+                proportions for pupil enrolments grouped by their Free School
+                Meal status, Special Educational Need status and by sex. A SEN
+                status of 'Any special educational need' includes pupils who
+                have either an EHC Plan or SEN Support status."),
               br(),
               p("Selection of multiple geographic areas or pupil characteristics will generate aggregate data of all pupils
                     matching the selection. To remove a characteristic delete it from the selection box."),
