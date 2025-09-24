@@ -61,7 +61,7 @@ homepage_panel <- function() {
       gov_row(
         h1("Pupil absence distributions in schools in England"),
         br(),
-        p("Data was last updated on 23 September 2025."),
+        p("Data was last updated on 24 September 2025."),
         br(),
         ## Left panel -------------------------------------------------------
         layout_columns(
