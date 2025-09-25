@@ -31,11 +31,10 @@ shhh(library(shinytest2))
 shhh(library(readr))
 shhh(library(rstudioapi))
 shhh(library(bslib))
-# shhh(library(dfeshiny))
 shhh(library(ggiraph))
-
 shhh(library(data.table))
-# shhh(library(shinya11y))
+shhh(library(dfeshiny))
+
 
 # Functions --------------------------------------------------------------------
 
@@ -92,19 +91,24 @@ ees_pub_name <- "Pupil absence in schools in England"
 ees_pub_url <- "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england"
 google_analytics_key <- "9E4GQN2T4H"
 
-
 source("R/read_data.R")
 
 # Read in the data
 
 # 1 The distribution band data
-# Note that CSV data files of > 10 MB should be avoided whereever possible.
-# Above 10 MB, CSV files should either be zipped or data should be stored in
-# a more efficient format such as Parquet.
 df_absence <- read_absence_data(file = "data/absence_bands_distributions.zip")
 
+absence_col_names <- c(
+  "time_identifier", "time_period", "geographic_level", "country_code",
+  "country_name", "region_name", "region_code", "old_la_code", "new_la_code",
+  "la_name", "school_type", "fsm_eligible", "sen_status", "gender", "NCyearActual",
+  "pct5_OARate", "pct10_OARate", "pct15_OARate", "pct20_OARate", "pct25_OARate",
+  "pct30_OARate", "pct35_OARate", "pct40_OARate", "pct45_OARate",
+  "pct50_OARate", "pct55_OARate", "pct60_OARate", "pct65_OARate",
+  "pct70_OARate", "pct75_OARate", "pct80_OARate", "pct85_OARate",
+  "pct90_OARate", "pct95_OARate", "pct99_OARate", "pct100_OARate"
+)
 
-absence_col_names <- c("time_identifier", "time_period", "geographic_level", "country_code", "country_name", "region_name", "region_code", "old_la_code", "new_la_code", "la_name", "school_type", "fsm_eligible", "sen_status", "gender", "NCyearActual", "pct5_OARate", "pct10_OARate", "pct15_OARate", "pct20_OARate", "pct25_OARate", "pct30_OARate", "pct35_OARate", "pct40_OARate", "pct45_OARate", "pct50_OARate", "pct50plus_OARate")
 colnames(df_absence) <- absence_col_names
 
 df_absence <- df_absence %>%

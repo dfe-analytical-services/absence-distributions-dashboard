@@ -24,11 +24,11 @@
       "Unclassified"
     ],
     "selectSchool_type": [
+      "State-funded primary",
       "State-funded secondary",
-      "Special",
-      "State-funded primary"
+      "Special"
     ],
-    "selectYear": "2022/23",
+    "selectYear": "2023/24",
     "support": 0,
     "tabDataNumber_rows_all": [
       1,
@@ -41,7 +41,17 @@
       8,
       9,
       10,
-      11
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
     ],
     "tabsetpanels": "Pupil Enrolments",
     "technical_notes": 0,
