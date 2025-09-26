@@ -122,7 +122,6 @@ df_absence <- df_absence %>%
   )
 
 # Get geographical levels from data
-# Add geog lookup
 geog_lookup <- df_absence %>%
   dplyr::select(geographic_level, region_name, la_name) %>%
   unique() %>%

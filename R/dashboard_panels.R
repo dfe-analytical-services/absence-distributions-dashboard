@@ -86,7 +86,7 @@ homepage_panel <- function() {
               and local authority geographic levels.Data is available across
               state-funded primary, secondary and special schools and can also
               be broken down by individual school type and pupil characteristics.
-                Drop-down menus at the top of the page allow customisation of year
+              Drop-down menus at the top of the page allow customisation of year
                 and breakdowns. "),
               p("Users can select a geographic level prior to selecting further options at regional or local authority level."),
               br(),
